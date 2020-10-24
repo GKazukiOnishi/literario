@@ -15,3 +15,4 @@ use App\Http\Controllers\PrincipalController;
 */
 
 Route::get('/',[PrincipalController::class,'carregarPagina']);
+Route::post('/',[PrincipalController::class,'cadastrarConteudo']);

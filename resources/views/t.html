@@ -1,0 +1,598 @@
+@extends('layout')
+
+@section('conteudo')
+<!--conteúdo-->
+<div class="tab-content" id="v-nav-tabContent">
+    <!--estatísticas-->
+    <div class="tab-pane fade show active" id="v-nav-estatistica" role="tabpanel"
+        aria-labelledby="v-nav-estatistica-tab">
+        <div class="container">
+            <div class="row mb-lg-4 mb-2">
+                <div class="col-12 mb-4 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Conteúdos com mais dúvidas</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Conteúdo</th>
+                                            <th scope="col"></th>
+                                            <th scope="col" class="text-center">%Dúvida</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th class="align-middle" scope="row">1</th>
+                                            <td class="align-middle">As dez classes gramaticais</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">60%</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" scope="row">2</th>
+                                            <td class="align-middle">Romantismo</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">50%</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" scope="row">3</th>
+                                            <td class="align-middle">Acentuação</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">40%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 mb-4 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Lista com maiores taxas de erro</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Lista</th>
+                                            <th scope="col"></th>
+                                            <th scope="col" class="text-center">%Erro</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th class="align-middle" scope="row">1</th>
+                                            <td class="align-middle">Lista de crase</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">60%</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" scope="row">2</th>
+                                            <td class="align-middle">Lista sobre poemas</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">50%</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" scope="row">3</th>
+                                            <td class="align-middle">Lista de Claro Enigma</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">40%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 mb-4 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Conteúdos mais curtidos</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Conteúdo</th>
+                                            <th scope="col"></th>
+                                            <th scope="col" class="text-center">Curtidas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th class="align-middle" scope="row">1</th>
+                                            <td class="align-middle">As dez classes gramaticais</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">500</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" scope="row">2</th>
+                                            <td class="align-middle">Romantismo</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">200</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="align-middle" scope="row">3</th>
+                                            <td class="align-middle">Acentuação</td>
+                                            <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3"
+                                                    style="background-color: #2a659d; color:#fff"><i
+                                                        class="material-icons mt-1">chevron_right</i></a></td>
+                                            <td class="text-center align-middle">150</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--literatura-->
+    <div class="tab-pane fade" id="v-nav-home" role="tabpanel" aria-labelledby="v-nav-home-tab">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col w-100">
+                    <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
+                        <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal1"
+                            data-whatever="Adicionar">add_box</i>
+                    </button>
+                    <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
+                        <i class="material-icons mt-1">reorder</i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mb-lg-4 mb-2">
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/trovadorismo.jpg" class="card-img-top" alt="Imagem trovadorismo" width="230"
+                            height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Trovadorismo</b></h5>
+                            <p class="card-text">Escola literária de .........................................</p>
+                            <a href="conteudo_literatura.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/humanismo.jpg" class="card-img-top" alt="Imagem humanismo" width="230"
+                            height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Humanismo</b></h5>
+                            <p class="card-text">Escola literária de .........................................</p>
+                            <a href="conteudo_literatura.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/quinhentismo.jpg" class="card-img-top" alt="Imagem quinhentismo" width="230"
+                            height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Quinhentismo</b></h5>
+                            <p class="card-text">Escola literária de .........................................</p>
+                            <a href="conteudo_literatura.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--gramática-->
+    <div class="tab-pane fade" id="v-nav-profile" role="tabpanel" aria-labelledby="v-nav-profile-tab">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col w-100">
+                    <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
+                        <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal2"
+                            data-whatever="Adicionar">add_box</i>
+                    </button>
+                    <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
+                        <i class="material-icons mt-1">reorder</i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mb-lg-4 mb-2">
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/classes-gramaticais.jpg" class="card-img-top" alt="classes gramaticais"
+                            width="230" height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Classes Gramaticais</b></h5>
+                            <p class="card-text">as dez classes gramaticais........</p>
+                            <a href="conteudo_gramatica.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/acentos.jpg" class="card-img-top" alt="acentos" width="230" height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Ortografia e Acentuação</b></h5>
+                            <p class="card-text">tudo sobre ortografia e acentuação.....</p>
+                            <a href="conteudo_gramatica.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/sintaxe.jpg" class="card-img-top" alt="sintaxe" width="230" height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Sintaxe</b></h5>
+                            <p class="card-text">componentes, exemplos........</p>
+                            <a href="conteudo_gramatica.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--redação-->
+    <div class="tab-pane fade" id="v-nav-messages" role="tabpanel" aria-labelledby="v-nav-messages-tab">
+        <div class="container">
+            <h4 class="bg-light" style="padding: 10px; text-align: center">Propostas de redação</h4>
+            <div class="row mb-4">
+                <div class="col w-100">
+                    <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
+                        <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal3"
+                            data-whatever="Adicionar">add_box</i>
+                    </button>
+                    <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
+                        <i class="material-icons mt-1">reorder</i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mb-lg-4 mb-2">
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/meio-ambiente.jpg" class="card-img-top" alt="Desenvolvimento ou preservação?"
+                            width="230" height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Meio ambiente</b></h5>
+                            <p class="card-text">Desenvolvimento econômico ou preservação ecológica?</p>
+                            <a href="conteudo_redacao.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/racismo.jpg" class="card-img-top" alt="Inclusão social" width="230" height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Sociedade</b></h5>
+                            <p class="card-text">Importância de políticas públicas no combate ao racismo</p>
+                            <a href="conteudo_redacao.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card">
+                        <img src="img/teatro.jpg" class="card-img-top" alt="Teatro" width="230" height="230">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Cultura</b></h5>
+                            <p class="card-text">A democratização do acesso ao teatro</p>
+                            <a href="conteudo_redacao.html" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff"><i
+                                    class="material-icons mt-1">chevron_right</i></a>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">edit</i>
+                            </button>
+                            <button type="button" class="btn btn-sm float-right mr-3"
+                                style="background-color: #2a659d; color:#fff">
+                                <i class="material-icons mt-1">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="bg-light" style="padding: 10px; text-align: center">Entregas de alunos</h4>
+            <div class="container">
+                <div class="row mb-lg-4 mb-2">
+                    <div class="col-12 mb-4 mb-lg-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Redações</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Aluno</th>
+                                                <th scope="col">Tema</th>
+                                                <th scope="col">Comentários</th>
+                                                <th scope="col" class="text-center">Pontuação</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-danger">
+                                                <td class="align-middle">Osvaldo Andrade</td>
+                                                <td class="align-middle">Meio ambiente</td>
+                                                <td class="align-middle">(Sem correção)</td>
+                                                <td class="text-center align-middle">Pendente</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                            <tr class="table-danger">
+                                                <td class="align-middle">Carla Drummond</td>
+                                                <td class="align-middle">Cultura</td>
+                                                <td class="align-middle">(Sem correção)</td>
+                                                <td class="text-center align-middle">Pendente</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                            <tr class="table-danger">
+                                                <td class="align-middle">Osvaldo Andrade</td>
+                                                <td class="align-middle">Cultura</td>
+                                                <td class="align-middle">(Sem correção)</td>
+                                                <td class="text-center align-middle">Pendente</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">Anita Benfatti</td>
+                                                <td class="align-middle">Meio ambiente</td>
+                                                <td class="align-middle">Boa tese. Corrigir argumento 2 (linha 14)</td>
+                                                <td class="text-center align-middle">85/100</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">Carla Drummond</td>
+                                                <td class="align-middle">Meio ambiente</td>
+                                                <td class="align-middle">Falha de regência (linha 7). Boa abordagem</td>
+                                                <td class="text-center align-middle">90/100</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Osvaldo Andrade</td>
+                                                <td class="align-middle">Sociedade</td>
+                                                <td class="align-middle">Ótima argumentação!</td>
+                                                <td class="text-center align-middle">100/100</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">Carla Drummond</td>
+                                                <td class="align-middle">Sociedade</td>
+                                                <td class="align-middle">Erro ortográfico (linha 12). Boa tese</td>
+                                                <td class="text-center align-middle">90/100</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">Anita Benfatti</td>
+                                                <td class="align-middle">Cultura</td>
+                                                <td class="align-middle">Perfeita argumentação!</td>
+                                                <td class="text-center align-middle">100/100</td>
+                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                        class="btn btn-sm float-right mr-3"
+                                                        style="background-color: #2a659d; color:#fff"><i
+                                                            class="material-icons mt-1">chevron_right</i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modals-->
+<div class="modal fade" id="AddModal1" tabindex="-1" role="dialog" aria-labelledby="AddModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddModalLabel">Crie uma nova seção</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nome:</label>
+                        <input type="text" class="form-control" id="form-principal-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="form-principal-desc">
+                    </div>
+                    <div class="form-group">
+                        <label for="file" class="col-form-label">Imagem:</label>
+                        <input type="file" class="form-control" id="form-principal-file">
+                    </div>
+                    <button type="submit" class="btn btn-secondary float-right">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddModal2" tabindex="-1" role="dialog" aria-labelledby="AddModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddModalLabel">Crie uma nova seção</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nome:</label>
+                        <input type="text" class="form-control" id="form-principal-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="form-principal-desc">
+                    </div>
+                    <div class="form-group">
+                        <label for="file" class="col-form-label">Imagem:</label>
+                        <input type="file" class="form-control" id="form-principal-file">
+                    </div>
+                    <button type="submit" class="btn btn-secondary float-right">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddModal3" tabindex="-1" role="dialog" aria-labelledby="AddModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddModalLabel">Crie uma nova seção</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nome:</label>
+                        <input type="text" class="form-control" id="form-principal-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="form-principal-desc">
+                    </div>
+                    <div class="form-group">
+                        <label for="file" class="col-form-label">Imagem:</label>
+                        <input type="file" class="form-control" id="form-principal-file">
+                    </div>
+                    <button type="submit" class="btn btn-secondary float-right">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
