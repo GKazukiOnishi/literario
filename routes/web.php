@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
+use App\Http\Controllers\ConteudoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,5 @@ use App\Http\Controllers\PrincipalController;
 
 Route::get('/',[PrincipalController::class,'carregarPagina']);
 Route::post('/',[PrincipalController::class,'cadastrarConteudo']);
+
+Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPagina']);
