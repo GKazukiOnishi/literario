@@ -40,16 +40,16 @@ class ConteudoController extends Controller
             if ($idArea == '2') {
                 $conteudosSec1T = [['nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo'],['nome'=>'Conteúdo 2','descricao'=>'Descrição do conteúdo'],['nome'=>'Conteúdo 3','descricao'=>'Descrição do conteúdo'],['nome'=>'Conteúdo 4','descricao'=>'Descrição do conteúdo']];
                 $subsecoesT = [['nome'=>'Fase N','conteudo'=>$conteudosSec1T]];
-                array_push($menus, ['nome'=>'Trovadorismo','icone'=>'book','subsecao'=>$subsecoesT]);
+                array_push($menus, ['id'=>1,'nome'=>'Trovadorismo','icone'=>'book','subsecao'=>$subsecoesT]);
                 $conteudosSec1H = [['nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo']];
                 $subsecoesH = [['nome'=>'Fase N','conteudo'=>$conteudosSec1H]];
-                array_push($menus, ['nome'=>'Humanismo','icone'=>'book','subsecao'=>$subsecoesH]);
+                array_push($menus, ['id'=>2,'nome'=>'Humanismo','icone'=>'book','subsecao'=>$subsecoesH]);
                 $conteudosSec1Q = [['nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo']];
                 $subsecoesQ = [['nome'=>'Fase N','conteudo'=>$conteudosSec1Q]];
-                array_push($menus, ['nome'=>'Quinhentismo','icone'=>'book','subsecao'=>$subsecoesQ]);
+                array_push($menus, ['id'=>3,'nome'=>'Quinhentismo','icone'=>'book','subsecao'=>$subsecoesQ]);
             }
 
-            return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'conteudo']);
+            return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'conteudo','idArea'=>$idArea]);
         }
     }
 

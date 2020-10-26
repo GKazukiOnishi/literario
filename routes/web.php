@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/conteudo',[ConteudoController::class,'carregarPaginaSecoes'])->name('home');
 Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPaginaSubsecoes']);
+Route::get('/conteudo/{area}/{secao}/exercicios',[ConteudoController::class,'']);
 
 Route::post('/conteudo/{area}',[ConteudoController::class,'cadastrarSecao']);
 Route::post('/conteudo/{area}/{secao}',[ConteudoController::class,'cadastrarSubsecao']);
