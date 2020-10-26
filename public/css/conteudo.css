@@ -5,6 +5,16 @@ body
     margin: 0px;
 }
 
+a
+{
+    color: #fff;
+}
+
+a:hover
+{
+    color: #fff;
+}
+
 .modal-title
 {
   color: #2a659d;

@@ -4,7 +4,7 @@
     <!--conteúdo-->
     <div class="tab-content" id="v-nav-tabContent">
         @foreach ($menus as $menu)
-            <div class="tab-pane fade show {{$loop->first?'active':''}}" id="v-nav-{{$menu['nome']}}" role="tabpanel" aria-labelledby="v-nav-{{$menu['nome']}}-tab">
+            <div class="tab-pane fade show {{$loop->first?'active':''}}" id="v-nav-{{$menu['id']}}" role="tabpanel" aria-labelledby="v-nav-{{$menu['id']}}-tab">
                 <div class="container">
                     @if ($menu['nome'] == 'Estatística')
                         <div class="row mb-lg-4 mb-2">
@@ -171,7 +171,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><b>{{$conteudo['nome']}}</b></h5>
                                             <p class="card-text">{{$conteudo['descricao']}}</p>
-                                            <a href="conteudo/{{$menu['nome']}}" class="btn btn-sm float-right mr-3"
+                                            <a href="/conteudo/{{$menu['id']}}" class="btn btn-sm float-right mr-3"
                                                 style="background-color: #2a659d; color:#fff"><i
                                                     class="material-icons mt-1">chevron_right</i></a>
                                             <button type="button" class="btn btn-sm float-right mr-3"
@@ -309,7 +309,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" method="POST" enctype="multipart/form-data">
+                                        <form action="/conteudo/{{$menu['id']}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="form-principal-nome" class="col-form-label">Nome:</label>
