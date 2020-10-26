@@ -18,10 +18,10 @@ class CreateAreaTable extends Migration
             $table->string('nome', 60);
             $table->integer('id_conteudo')->index('area_fk0');
             $table->integer('nivel');
-            $table->string('icone');
-            $table->string('img');
-            $table->string('descricao');
-            $table->integer('id_area_relacionada')->index('area_fk1');
+            $table->string('icone')->nullable();
+            $table->string('img')->nullable();
+            $table->string('descricao')->nullable();
+            $table->integer('id_area_relacionada')->index('area_fk1')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

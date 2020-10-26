@@ -29,3 +29,4 @@ Route::get('/perfil',[PerfilController::class,'carregarPagina']);
 Route::post('/perfil',[PerfilController::class,'atualizarPerfil']);
 
 Auth::routes();
+
