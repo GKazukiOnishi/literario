@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,7 @@ use App\Http\Controllers\PrincipalController;
 |
 */
 
-Route::get('/',[PrincipalController::class,'carregarPagina']);
+Route::get('/',[PrincipalController::class,'carregarPagina'])->name('home');
 Route::post('/',[PrincipalController::class,'cadastrarConteudo']);
+
+Auth::routes();
