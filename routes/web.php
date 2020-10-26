@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ConteudoController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,13 @@ use App\Http\Controllers\ConteudoController;
 |
 */
 
-Route::get('/',[PrincipalController::class,'carregarPagina']);
-Route::post('/',[PrincipalController::class,'cadastrarConteudo']);
+Route::get('/conteudo',[ConteudoController::class,'carregarPaginaSecoes']);
+Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPaginaSubsecoes']);
 
-Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPagina']);
+Route::post('/conteudo/{area}',[ConteudoController::class,'cadastrarSecao']);
+Route::post('/conteudo/{area}/{secao}',[ConteudoController::class,'cadastrarSubsecao']);
+Route::post('/conteudo/{area}/{secao}/{subsecao}',[ConteudoController::class,'cadastrarConteudo']);
+
+Route::get('/perfil',[PerfilController::class,'carregarPagina']);
+Route::post('/perfil',[PerfilController::class,'atualizarPerfil']);
+
