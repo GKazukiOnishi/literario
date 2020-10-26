@@ -39,7 +39,7 @@
     <link rel="stylesheet" type="text/css" href="css/conteudo.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg nav-light" style="background-color: #2a659d; color:#fff; font-family: 'Oswald', sans-serif ">
