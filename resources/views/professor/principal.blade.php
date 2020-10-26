@@ -213,7 +213,7 @@
                                                                 <td class="align-middle">Meio ambiente</td>
                                                                 <td class="align-middle">(Sem correção)</td>
                                                                 <td class="text-center align-middle">Pendente</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -223,7 +223,7 @@
                                                                 <td class="align-middle">Cultura</td>
                                                                 <td class="align-middle">(Sem correção)</td>
                                                                 <td class="text-center align-middle">Pendente</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -233,7 +233,7 @@
                                                                 <td class="align-middle">Cultura</td>
                                                                 <td class="align-middle">(Sem correção)</td>
                                                                 <td class="text-center align-middle">Pendente</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -243,7 +243,7 @@
                                                                 <td class="align-middle">Meio ambiente</td>
                                                                 <td class="align-middle">Boa tese. Corrigir argumento 2 (linha 14)</td>
                                                                 <td class="text-center align-middle">85/100</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -253,7 +253,7 @@
                                                                 <td class="align-middle">Meio ambiente</td>
                                                                 <td class="align-middle">Falha de regência (linha 7). Boa abordagem</td>
                                                                 <td class="text-center align-middle">90/100</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -264,7 +264,7 @@
                                                                 <td class="align-middle">Sociedade</td>
                                                                 <td class="align-middle">Ótima argumentação!</td>
                                                                 <td class="text-center align-middle">100/100</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -274,7 +274,7 @@
                                                                 <td class="align-middle">Sociedade</td>
                                                                 <td class="align-middle">Erro ortográfico (linha 12). Boa tese</td>
                                                                 <td class="text-center align-middle">90/100</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>
@@ -284,7 +284,7 @@
                                                                 <td class="align-middle">Cultura</td>
                                                                 <td class="align-middle">Perfeita argumentação!</td>
                                                                 <td class="text-center align-middle">100/100</td>
-                                                                <td class="align-middle"><a href="entrega_redacao.html"
+                                                                <td class="align-middle"><a href="/redacao/1/1"
                                                                         class="btn btn-sm float-right mr-3"
                                                                         style="background-color: #2a659d; color:#fff"><i
                                                                             class="material-icons mt-1">chevron_right</i></a></td>

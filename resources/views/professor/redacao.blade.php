@@ -16,9 +16,9 @@
 <body>
 <!--navbar-->
 <nav class="navbar navbar-expand-lg nav-light" style="background-color: #2a659d; color:#fff; font-family: 'Oswald', sans-serif ">
-    <a class="navbar-brand ml-3" href="principalProfessor.html" style="font-family: 'Oswald', sans-serif; color:#fff; font-weight: bolder; font-size: larger;">
-        <img src="img/logo2.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;">
-        Redação
+    <a class="navbar-brand ml-3" href="/conteudo" style="font-family: 'Oswald', sans-serif; color:#fff; font-weight: bolder; font-size: larger;">
+        <img src="{{ asset('img/logo2.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;">
+        Literário
     </a>
     <div class="navbar-brand ml-auto d-lg-none">
         <div class="d-flex flex-row">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <a href="perfilProfessor.html"><img src="img/user1.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+            <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
         </div>
     </div>
     <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 &nbsp;
-                <a href="perfilProfessor.html"><img src="img/user1.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="/perfil"><img src="" alt="Foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="Foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
             </div>
         </div>
         <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

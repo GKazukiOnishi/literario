@@ -12,24 +12,24 @@ class ConteudoController extends Controller
     
     function carregarPaginaSecoes(Request $req) {
         $professorAssociado = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
-            if ($professorAssociado=='[]'){
-            $conteudo = new Conteudo; 
-            $conteudo->id_professor = auth()->user()->id;
-            $conteudo -> save();
-            }
-            $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
-            $areasFixas = [['nome'=>'Literatura','nivel'=>1,'icone'=>'book'],['nome'=>'Gramática','nivel'=>1,'icone'=>'book'],['nome'=>'Redação','nivel'=>1,'icone'=>'book']];
+        if ($professorAssociado=='[]'){
+        $conteudo = new Conteudo; 
+        $conteudo->id_professor = auth()->user()->id;
+        $conteudo -> save();
+        }
+        $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
+        $areasFixas = [['nome'=>'Literatura','nivel'=>1,'icone'=>'book'],['nome'=>'Gramática','nivel'=>1,'icone'=>'book'],['nome'=>'Redação','nivel'=>1,'icone'=>'book']];
 
-            // foreach ($areasFixas as $campo => $valor)
-            // {
-            //     echo $areasFixas['nome']
-            //     $area = New Area();
-            //     $area->nome = $areasFixas['nome'];
-            //     $area->nivel = $areasFixas['nivel'];
-            //     $area->icone=$areasFixas['icone'];
-            //     $area->id_conteudo = $idConteudo;
-            //     $area->save();
-            // }
+        // foreach ($areasFixas as $campo => $valor)
+        // {
+        //     echo $areasFixas['nome']
+        //     $area = New Area();
+        //     $area->nome = $areasFixas['nome'];
+        //     $area->nivel = $areasFixas['nivel'];
+        //     $area->icone=$areasFixas['icone'];
+        //     $area->id_conteudo = $idConteudo;
+        //     $area->save();
+        // }
             
 
         $req->session()->put('perfil','professor');
@@ -51,6 +51,8 @@ class ConteudoController extends Controller
             array_push($menus, ['id'=>4,'nome'=>'Redação','icone'=>'format_align_justify','conteudo'=>$conteudoRed]);
 
             return view('professor.principal',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'principal']);
+        } else {
+            return view('aluno.principal');
         }
     }
 
@@ -71,6 +73,8 @@ class ConteudoController extends Controller
             }
 
             return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'conteudo','idArea'=>$idArea]);
+        } else {
+            return view('aluno.conteudo');
         }
     }
     
