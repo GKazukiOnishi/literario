@@ -4,7 +4,7 @@
     <!--conteúdo-->
     <div class="tab-content" id="v-nav-tabContent">
         @foreach ($menus as $menu)
-            <div class="tab-pane fade show {{$loop->first?'active':''}}" id="v-nav-{{$menu['nome']}}" role="tabpanel" aria-labelledby="v-nav-{{$menu['nome']}}-tab">
+            <div class="tab-pane fade show {{$loop->first?'active':''}}" id="v-nav-{{$menu['id']}}" role="tabpanel" aria-labelledby="v-nav-{{$menu['id']}}-tab">
                 <div class="container">
                     <div class="row mb-4">
                         <div class="col w-100">
@@ -104,8 +104,9 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="">
-                                    <div class="form-group">
+                                    <form action="/conteudo/{{$idArea}}/{{$loop->parent->iteration}}/{{$loop->iteration}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group">
                                         <label for="name" class="col-form-label">Título:</label>
                                         <input type="text" class="form-control" id="form-principal-name">
                                         </div>
@@ -119,7 +120,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-secondary float-right">Salvar</button>
                                     </form>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -134,14 +135,15 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#">
-                                <div class="form-group">
-                                    <label for="name" class="col-form-label">Nome:</label>
-                                    <input type="text" class="form-control" id="form-principal-name">
-                                </div>
-                                <button type="submit" class="btn btn-secondary float-right">Salvar</button>
+                                <form action="/conteudo/{{$idArea}}/{{$loop->iteration}}" method="POST">
+                                @csrf
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Nome:</label>
+                                        <input type="text" class="form-control" id="form-principal-name">
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary float-right">Salvar</button>
                                 </form>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
