@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ConteudoController extends Controller
 {
-    //
-    function carregarPaginaSecoes(Request $req) {
+
+    function carregarPagina($area, Request $req) {
         $req->session()->put('perfil','professor');
         if (session('perfil') == 'professor') {
             $menus = [];
