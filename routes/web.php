@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ConteudoController;
 use App\Http\Controllers\PerfilController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\PerfilController;
 |
 */
 
-Route::get('/conteudo',[ConteudoController::class,'carregarPaginaSecoes']);
+Route::get('/conteudo',[ConteudoController::class,'carregarPaginaSecoes'])->name('home');
 Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPaginaSubsecoes']);
 
 Route::post('/conteudo/{area}',[ConteudoController::class,'cadastrarSecao']);
@@ -26,3 +27,4 @@ Route::post('/conteudo/{area}/{secao}/{subsecao}',[ConteudoController::class,'ca
 Route::get('/perfil',[PerfilController::class,'carregarPagina']);
 Route::post('/perfil',[PerfilController::class,'atualizarPerfil']);
 
+Auth::routes();
