@@ -29,7 +29,7 @@ class PrincipalController extends Controller
                             ['img'=>'img/teatro.jpg','nome'=>'Cultura','descricao'=>'A democratização do acesso ao teatro']];
             array_push($menus, ['nome'=>'Redação','icone'=>'format_align_justify','conteudo'=>$conteudoRed]);
 
-            return view('principalProfessor',['qtdNotificacoes'=>'5','menus'=>$menus]);
+            return view('professor.principal',['qtdNotificacoes'=>'5','menus'=>$menus]);
         }
     }
 
@@ -38,7 +38,7 @@ class PrincipalController extends Controller
         $descricao = $req->input('descricao');
         $md5Name = md5_file($req->file('img')->getRealPath());
         $guessExtension = $req->file('img')->guessExtension();
-        $file = $req->file('img')->storeAs('docs', $md5Name.'.'.$guessExtension);
+        $file = $req->file('img')->storeAs('images', $md5Name.'.'.$guessExtension);
         $menu = $req->input('menu');
         return redirect('/');
     }

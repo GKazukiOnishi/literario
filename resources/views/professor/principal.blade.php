@@ -171,7 +171,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><b>{{$conteudo['nome']}}</b></h5>
                                             <p class="card-text">{{$conteudo['descricao']}}</p>
-                                            <a href="conteudo_literatura.html" class="btn btn-sm float-right mr-3"
+                                            <a href="conteudo/{{$menu['nome']}}" class="btn btn-sm float-right mr-3"
                                                 style="background-color: #2a659d; color:#fff"><i
                                                     class="material-icons mt-1">chevron_right</i></a>
                                             <button type="button" class="btn btn-sm float-right mr-3"
