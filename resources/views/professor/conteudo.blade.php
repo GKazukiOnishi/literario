@@ -51,7 +51,9 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title"><b>{{$conteudo['nome']}}</b></h5>
                                                     <p class="card-text">{{$conteudo['descricao']}}</p>
-                                                    <a href="#download" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">cloud_download</i></a>
+                                                    <form action="/conteudo/{{$idArea}}/{{$menu['id']}}/{{$subsecao['id']}}/{{$conteudo['id']}}" method="GET">
+                                                        <button type="submit" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">cloud_download</i></button>
+                                                    </form>
                                                     <button type="button" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff" data-toggle="modal" data-target="#EditConteudo{{$loop->parent->parent->parent->iteration.$loop->parent->parent->iteration.$conteudo['index']}}" data-whatever="Editar">
                                                         <i class="material-icons mt-1">edit</i>
                                                     </button>
@@ -104,19 +106,19 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/conteudo/{{$idArea}}/{{$loop->parent->iteration}}/{{$loop->iteration}}" method="POST" enctype="multipart/form-data">
+                                    <form action="/conteudo/{{$idArea}}/{{$menu['id']}}/{{$subsecao['id']}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                         <label for="name" class="col-form-label">Título:</label>
-                                        <input type="text" class="form-control" id="form-principal-name">
+                                        <input type="text" class="form-control" id="form-principal-name" name="nome">
                                         </div>
                                         <div class="form-group">
                                             <label for="desc" class="col-form-label">Descrição:</label>
-                                            <input type="text" class="form-control" id="form-principal-desc">
+                                            <input type="text" class="form-control" id="form-principal-desc" name="descricao">
                                         </div>
                                         <div class="form-group">
                                             <label for="file" class="col-form-label">Arquivo:</label>
-                                            <input type="file" class="form-control" id="form-principal-file">
+                                            <input type="file" class="form-control" id="form-principal-file" name="arq">
                                         </div>
                                         <button type="submit" class="btn btn-secondary float-right">Salvar</button>
                                     </form>
@@ -135,11 +137,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/conteudo/{{$idArea}}/{{$loop->iteration}}" method="POST">
-                                @csrf
+                                <form action="/conteudo/{{$idArea}}/{{$menu['id']}}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="name" class="col-form-label">Nome:</label>
-                                        <input type="text" class="form-control" id="form-principal-name">
+                                        <input type="text" class="form-control" id="form-principal-name" name="nome">
                                     </div>
                                     <button type="submit" class="btn btn-secondary float-right">Salvar</button>
                                 </form>
