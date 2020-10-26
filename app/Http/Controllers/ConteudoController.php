@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ConteudoController extends Controller
 {
-    //
+
     function carregarPagina($area, Request $req) {
         $req->session()->put('perfil','professor');
         if (session('perfil') == 'professor') {
@@ -16,7 +16,6 @@ class ConteudoController extends Controller
                 array_push($menus, ['nome'=>'Humanismo','icone'=>'book']);
                 array_push($menus, ['nome'=>'Quinhentismo','icone'=>'book']);
             }
-
             return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus]);
         }
     }
