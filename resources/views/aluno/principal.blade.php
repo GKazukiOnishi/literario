@@ -118,7 +118,7 @@
                             <div class="col-12 mb-4 mb-lg-0">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Conteúdos mais acessados</h5>
+                                        <h5 class="card-title">Conteúdos com mais dúvidas</h5>
                                         <div class="table-responsive">
                                             <table class="table table-sm table-hover mb-0">
                                                 <thead>
@@ -126,26 +126,32 @@
                                                         <th scope="col">#</th>
                                                         <th scope="col">Conteúdo</th>
                                                         <th scope="col"></th>
-                                                        <th scope="col" class="text-center">%Acesso</th>
+                                                        <th scope="col" class="text-center">%Dúvida</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <th class="align-middle" scope="row">1</th>
                                                         <td class="align-middle">As dez classes gramaticais</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
                                                         <td class="text-center align-middle">60%</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="align-middle" scope="row">2</th>
                                                         <td class="align-middle">Romantismo</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
                                                         <td class="text-center align-middle">50%</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="align-middle" scope="row">3</th>
                                                         <td class="align-middle">Acentuação</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
                                                         <td class="text-center align-middle">40%</td>
                                                     </tr>
                                                 </tbody>
@@ -158,7 +164,7 @@
                             <div class="col-12 mb-4 mb-lg-0">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Lista de exercícios realizadas</h5>
+                                        <h5 class="card-title">Lista com maiores taxas de erro</h5>
                                         <div class="table-responsive">
                                             <table class="table table-sm table-hover mb-0">
                                                 <thead>
@@ -166,26 +172,32 @@
                                                         <th scope="col">#</th>
                                                         <th scope="col">Lista</th>
                                                         <th scope="col"></th>
-                                                        <th scope="col" class="text-center">%Feita</th>
+                                                        <th scope="col" class="text-center">%Erro</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <th class="align-middle" scope="row">1</th>
                                                         <td class="align-middle">Lista de crase</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
                                                         <td class="text-center align-middle">60%</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="align-middle" scope="row">2</th>
                                                         <td class="align-middle">Lista sobre poemas</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
                                                         <td class="text-center align-middle">50%</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="align-middle" scope="row">3</th>
                                                         <td class="align-middle">Lista de Claro Enigma</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
                                                         <td class="text-center align-middle">40%</td>
                                                     </tr>
                                                 </tbody>
@@ -198,35 +210,41 @@
                             <div class="col-12 mb-4 mb-lg-0">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Rendimento nas redações</h5>
+                                        <h5 class="card-title">Conteúdos mais curtidos</h5>
                                         <div class="table-responsive">
                                             <table class="table table-sm table-hover mb-0">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">Assunto</th>
+                                                        <th scope="col">Conteúdo</th>
                                                         <th scope="col"></th>
-                                                        <th scope="col" class="text-center">%Rendimento</th>
+                                                        <th scope="col" class="text-center">Curtidas</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <th class="align-middle" scope="row">1</th>
-                                                        <td class="align-middle">Meio Ambiente</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
-                                                        <td class="text-center align-middle">50%</td>
+                                                        <td class="align-middle">As dez classes gramaticais</td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="text-center align-middle">500</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="align-middle" scope="row">2</th>
-                                                        <td class="align-middle">Sociedade</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
-                                                        <td class="text-center align-middle">80%</td>
+                                                        <td class="align-middle">Romantismo</td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="text-center align-middle">200</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="align-middle" scope="row">3</th>
-                                                        <td class="align-middle">Cultura</td>
-                                                        <td class="align-middle"><a href="#" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a></td>
-                                                        <td class="text-center align-middle">75%</td>
+                                                        <td class="align-middle">Acentuação</td>
+                                                        <td class="align-middle"><a href="#" class="btn btn-sm"
+                                                                style="background-color: #2a659d; color:#fff"><i
+                                                                    class="material-icons mt-1">chevron_right</i></a></td>
+                                                        <td class="text-center align-middle">150</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
