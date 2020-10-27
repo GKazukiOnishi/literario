@@ -36,7 +36,7 @@ class ConteudoController extends Controller
             foreach(Area::where('nivel',1)->get() as $area) {
                 array_push($menus, $this->convertAreaToArray($area));
             }
-            array_unshift($menus, ['id'=>1,'nome'=>'Estatística','icone'=>'timeline']);
+            array_unshift($menus, ['id'=>0,'nome'=>'Estatística','icone'=>'timeline']);
 
             
             $menus = array_map(function ($menu) {
