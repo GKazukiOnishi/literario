@@ -11,15 +11,15 @@
     <link rel="stylesheet" type="text/css" href="css/principal.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
   
 </head>
 
 <body>
     <!--navbar-->
     <nav class="navbar navbar-expand-lg nav-light" style="background-color: #2a659d; color:#fff; font-family: 'Oswald', sans-serif ">
-        <a class="navbar-brand ml-3" href="#" style="font-family: 'Oswald', sans-serif; color:#fff; font-weight: bolder; font-size: larger;">
-            <img src="img/logo2.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;">
+        <a class="navbar-brand ml-3" href="/conteudo" style="font-family: 'Oswald', sans-serif; color:#fff; font-weight: bolder; font-size: larger;">
+            <img src="{{ asset('img/logo2.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;">
             Literário
         </a>
         <div class="navbar-brand ml-auto d-lg-none">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="perfilAluno.html"><img src="img/user1.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
             </div>
         </div>
         <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     &nbsp;
-                    <a href="perfilAluno.html"><img src="img/user1.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                    <a href="/perfil"><img src="i{{ asset('img/user1.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
                 </div>
             </div>
         </div>
@@ -255,7 +255,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>Trovadorismo</b></h5>
                                         <p class="card-text">Escola literária de .........................................</p>
-                                        <a href="conteudo_literatura_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                        <a href="/conteudo/1" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                     </div>
                                 </div>
                                 <br>
@@ -266,7 +266,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>Humanismo</b></h5>
                                         <p class="card-text">Escola literária de .........................................</p>
-                                        <a href="conteudo_literatura_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                        <a href="/conteudo/1" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                     </div>
                                 </div>
                                 <br>
@@ -277,7 +277,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>Quinhentismo</b></h5>
                                         <p class="card-text">Escola literária de .........................................</p>
-                                        <a href="conteudo_literatura_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                        <a href="/conteudo/1" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                     </div>
                                 </div>
                                 <br>
@@ -302,7 +302,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>Classes Gramaticais</b></h5>
                                         <p class="card-text">as dez classes gramaticais........</p>
-                                        <a href="conteudo_gramatica_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                        <a href="/conteudo/2" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                     </div>
                                 </div>
                                 <br>
@@ -313,7 +313,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>Ortografia e Acentuação</b></h5>
                                         <p class="card-text">tudo sobre ortografia e acentuação.....</p>
-                                        <a href="conteudo_gramatica_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                        <a href="/conteudo/2" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +323,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>Sintaxe</b></h5>
                                         <p class="card-text">componentes, exemplos........</p>
-                                        <a href="conteudo_gramatica_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                        <a href="/conteudo/2" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -347,7 +347,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Meio ambiente</b></h5>
                                     <p class="card-text">Desenvolvimento econômico ou preservação ecológica?</p>
-                                    <a href="conteudo_redacao_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                    <a href="/conteudo/3" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                 </div>
                             </div>
                             <br>
@@ -358,7 +358,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Sociedade</b></h5>
                                     <p class="card-text">Importância de políticas públicas no combate ao racismo</p>
-                                    <a href="conteudo_redacao_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                    <a href="/conteudo/3" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                 </div>
                             </div>
                         </div>
@@ -368,7 +368,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Cultura</b></h5>
                                     <p class="card-text">A democratização do acesso ao teatro</p>
-                                    <a href="conteudo_redacao_aluno.html" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
+                                    <a href="/conteudo/3" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">chevron_right</i></a>
                                 </div>
                             </div>
                         </div>

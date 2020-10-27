@@ -10,13 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/perfil.css') }}">
-    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 </head>
 
 <body>
     <nav class="navbar navbar-light bg-white">
     <span class="navbar-brand mb-0 h2" style="font-family: 'Oswald', sans-serif; color: #2a659d;">Edite seu perfil</span>
-    <a href="/"><img src="img/logo.png" width="50" height="50" alt="logo"></a> 
+    <a href="/conteudo"><img src="{{ asset('img/logo.png') }}" width="50" height="50" alt="logo"></a> 
     </nav>
     <br><br><br>
 
@@ -49,9 +49,9 @@
                 </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Bio</label>
+                    <label for="inputBio3" class="col-sm-2 col-form-label">Bio</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="bio" value="{{$bio}}">
+                        <input type="text" class="form-control" id="bio" value="{{$bio}}">
                 </div>
                 </div>
                 <button class="btn btn-white" type="submit">Salvar</button>

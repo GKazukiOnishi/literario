@@ -15,7 +15,7 @@
                                 <i class="material-icons mt-1" data-toggle="modal" data-target="#DeleteModal{{$loop->iteration}}" data-whatever="DeleteSubsection">delete</i>
                             </button>
                             <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
-                                <a href="form_exercicio.html"><i class="material-icons mt-1">fitness_center</i></a>
+                                <a href="/exercicio/{{$idArea}}/{{$menu['id']}}/"><i class="material-icons mt-1">fitness_center</i></a>
                             </button>
                         </div>
                     </div>

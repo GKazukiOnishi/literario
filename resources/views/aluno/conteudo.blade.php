@@ -10,13 +10,13 @@
     <link rel="stylesheet" type="text/css" href="css/conteudo.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg nav-light" style="background-color: #2a659d; color:#fff; font-family: 'Oswald', sans-serif ">
-        <a class="navbar-brand ml-3" href="principalAluno.html" style="font-family: 'Oswald', sans-serif; color:#fff; font-weight: bolder; font-size: larger;">
-            <img src="img/logo2.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;">
+        <a class="navbar-brand ml-3" href="/conteudo" style="font-family: 'Oswald', sans-serif; color:#fff; font-weight: bolder; font-size: larger;">
+            <img src="{{ asset('img/logo2.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;">
             Literatura
         </a>
         <div class="navbar-brand ml-auto d-lg-none">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="perfilAluno.html"><img src="img/user1.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
             </div>
         </div>
         <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     &nbsp;
-                    <a href="perfilAluno.html"><img src="img/user1.png" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                    <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                     <div class="row mb-4">
                         <div class="col w-100">
                             <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
-                                <a href="exercicio_aluno.html"><i class="material-icons mt-1">fitness_center</i></a>
+                                <a href="/exercicio/1/1"><i class="material-icons mt-1">fitness_center</i></a>
                             </button>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                     <div class="row mb-4">
                         <div class="col w-100">
                             <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
-                                <a href="exercicio_aluno.html"><i class="material-icons mt-1">fitness_center</i></a>
+                                <a href="/exercicio/1/1"><i class="material-icons mt-1">fitness_center</i></a>
                             </button>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                     <div class="row mb-4">
                         <div class="col w-100">
                             <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">
-                                <a href="exercicio_aluno.html"><i class="material-icons mt-1">fitness_center</i></a>
+                                <a href="/exercicio/1/1"><i class="material-icons mt-1">fitness_center</i></a>
                             </button>
                         </div>
                     </div>
