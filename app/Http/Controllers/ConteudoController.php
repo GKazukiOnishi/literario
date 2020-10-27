@@ -33,7 +33,6 @@ class ConteudoController extends Controller
         //     $area->id_conteudo = $idConteudo;
         //     $area->save();
         // }
-            
 
         $req->session()->put('perfil','professor');
         if (session('perfil') == 'professor') {
@@ -63,16 +62,19 @@ class ConteudoController extends Controller
         $req->session()->put('perfil','professor');
         if (session('perfil') == 'professor') {
             $menus = [];
-            if ($idArea == '2') {
-                $conteudosSec1T = [['id'=>1,'nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo'],['id'=>2,'nome'=>'Conteúdo 2','descricao'=>'Descrição do conteúdo'],['id'=>3,'nome'=>'Conteúdo 3','descricao'=>'Descrição do conteúdo'],['id'=>4,'nome'=>'Conteúdo 4','descricao'=>'Descrição do conteúdo']];
-                $subsecoesT = [['id'=>1,'nome'=>'Fase N','conteudo'=>$conteudosSec1T]];
-                array_push($menus, ['id'=>1,'nome'=>'Trovadorismo','icone'=>'book','subsecao'=>$subsecoesT]);
-                $conteudosSec1H = [['id'=>1,'nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo']];
-                $subsecoesH = [['id'=>1,'nome'=>'Fase N','conteudo'=>$conteudosSec1H]];
-                array_push($menus, ['id'=>2,'nome'=>'Humanismo','icone'=>'book','subsecao'=>$subsecoesH]);
-                $conteudosSec1Q = [['id'=>1,'nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo']];
-                $subsecoesQ = [['id'=>1,'nome'=>'Fase N','conteudo'=>$conteudosSec1Q]];
-                array_push($menus, ['id'=>3,'nome'=>'Quinhentismo','icone'=>'book','subsecao'=>$subsecoesQ]);
+            foreach(Area::where('nivel',2)->where('id_area_relacionada',$idArea)->get() as $area) {
+                $menu = $this->convertAreaToArray($area);
+                $subsecoes = [];
+                foreach(Area::where('nivel',3)->where('id_area_relacionada',$menu['id'])->get() as $area) {
+                    $subsecao = $this->convertAreaToArray($area);
+                    $subsecao['conteudo'] = [];
+                    foreach(Area::where('nivel',4)->where('id_area_relacionada',$subsecao['id'])->get() as $conteudo) {
+                        array_push($subsecao['conteudo'], $this->convertAreaToArray($conteudo));
+                    }
+                    array_push($subsecoes, $subsecao);
+                }
+                $menu['subsecao'] = $subsecoes;
+                array_push($menus, $menu);
             }
 
             return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'conteudo','idArea'=>$idArea]);
@@ -99,21 +101,37 @@ class ConteudoController extends Controller
     }
 
     function cadastrarSubsecao($idArea, $idSecao, Request $req) {
-        $nome = $req->input('nome');
+        $area = new Area();
+        $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get()->first();
+        $area->id_conteudo = $idConteudo['id'];
+        $area->nome = $req->input('nome');
+        $area->nivel = 3;
+        $area->id_area_relacionada = $idSecao;
+        $area->save();
         return redirect(url()->previous());
     }
 
     function cadastrarConteudo($idArea, $idSecao, $idSubsecao, Request $req) {
-        $nome = $req->input('nome');
-        $descricao = $req->input('descricao');
+        $area = new Area();
+        $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get()->first();
+        $area->id_conteudo = $idConteudo['id'];
+        $area->nome = $req->input('nome');
+        $area->descricao = $req->input('descricao');
+        $area->nivel = 4;
+        $area->id_area_relacionada = $idSubsecao;
         $md5Name = md5_file($req->file('arq')->getRealPath());
         $guessExtension = $req->file('arq')->guessExtension();
         $file = $req->file('arq')->storeAs('storage', $md5Name.'.'.$guessExtension);
+        $area->img = $file;
+        $area->save();
         return redirect(url()->previous());
     }
 
     function baixarConteudo($idArea, $idSecao, $idSubsecao, $idConteudo) {
-        $fileUrl = '9930843dfed0d94ffe8ccb8158ce6baa.pdf';
-        return Storage::download(Storage::url($fileUrl));
+        $area = Area::find($idConteudo);
+        $fileUrl = $area->img;
+        $extPos = strpos($fileUrl, '.');
+        $ext = substr($fileUrl,$extPos);
+        return Storage::download($fileUrl, $area->nome.$ext);
     }
 }
