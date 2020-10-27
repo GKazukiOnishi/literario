@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateAreaTable extends Migration
 {
@@ -25,7 +26,32 @@ class CreateAreaTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-    }
+
+        DB::table('area')->insert(
+            array(
+                'nome' => 'Literatura',
+                'id_conteudo' => 1,
+                'nivel' => 1, 
+                'icone' => 'book'),
+            );
+
+            DB::table('area')->insert(
+                array(
+                    'nome' => 'Gramática',
+                    'id_conteudo' => 1,
+                    'nivel' => 1, 
+                    'icone' => 'format_quote'),
+                );
+
+                DB::table('area')->insert(
+                    array(
+                        'nome' => 'Redação',
+                        'id_conteudo' => 1,
+                        'nivel' => 1, 
+                        'icone' => 'format_align_justify'),
+                    );
+
+        }
 
     /**
      * Reverse the migrations.

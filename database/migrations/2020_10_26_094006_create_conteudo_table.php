@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateConteudoTable extends Migration
 {
@@ -19,7 +20,14 @@ class CreateConteudoTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('conteudo')->insert(
+            array(
+                'id_professor' => 1
+            ));
     }
+      
+    
 
     /**
      * Reverse the migrations.
