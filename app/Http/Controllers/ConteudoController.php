@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ConteudoController extends Controller
 {
+    function convertAreaToArray(Area $area) {
+        return ['id'=>$area->id,'nome'=>$area->nome,'descricao'=>$area->descricao,'img'=>$area->img,'icone'=>$area->icone];
+    }
     
     function carregarPaginaSecoes(Request $req) {
         $professorAssociado = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
@@ -35,20 +38,20 @@ class ConteudoController extends Controller
         $req->session()->put('perfil','professor');
         if (session('perfil') == 'professor') {
             $menus = [];
-            array_push($menus, ['id'=>1,'nome'=>'Estatística','icone'=>'timeline']); //Estatística não ficará no banco, pois não segue a estrutura de módulos -> exceção
+            foreach(Area::where('nivel',1)->get() as $area) {
+                array_push($menus, $this->convertAreaToArray($area));
+            }
+            array_unshift($menus, ['id'=>1,'nome'=>'Estatística','icone'=>'timeline']); //Estatística não ficará no banco, pois não segue a estrutura de módulos -> exceção
 
-            //conteúdos
-            $areas = Area::all();
-            array_push($menus, ['id'=>2,'nome'=>'Literatura','icone'=>'book','conteudo'=>$areas]);
-            $conteudoGra = [['img'=>'img/classes-gramaticais.jpg','nome'=>'Classes Gramaticais','descricao'=>'as dez classes gramaticais........'],
-                            ['img'=>'img/acentos.jpg','nome'=>'Ortografia e Acentuação','descricao'=>'tudo sobre ortografia e acentuação.....'],
-                            ['img'=>'img/sintaxe.jpg','nome'=>'Sintaxe','descricao'=>'componentes, exemplos........']];
-            array_push($menus, ['id'=>3,'nome'=>'Gramática','icone'=>'format_quote','conteudo'=>$conteudoGra]);
-
-            $conteudoRed = [['img'=>'img/meio-ambiente.jpg','nome'=>'Meio ambiente','descricao'=>'Desenvolvimento econômico ou preservação ecológica?'],
-                            ['img'=>'img/racismo.jpg','nome'=>'Sociedade','descricao'=>'Importância de políticas públicas no combate ao racismo'],
-                            ['img'=>'img/teatro.jpg','nome'=>'Cultura','descricao'=>'A democratização do acesso ao teatro']];
-            array_push($menus, ['id'=>4,'nome'=>'Redação','icone'=>'format_align_justify','conteudo'=>$conteudoRed]);
+            
+            $menus = array_map(function ($menu) {
+                $conteudos = [];
+                foreach(Area::where('nivel',2)->where('id_area_relacionada',$menu['id'])->get() as $area) {
+                    array_push($conteudos, $this->convertAreaToArray($area));
+                }
+                $menu['conteudo'] = $conteudos;
+                return $menu;
+            }, $menus);
 
             return view('professor.principal',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'principal']);
         } else {
@@ -80,7 +83,6 @@ class ConteudoController extends Controller
     
     function cadastrarSecao($idArea, Request $req) {
         $area = new Area();
-        echo $req;
         $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get()->first();
         $area->nome=$req->input('nome');
         $area->descricao = $req->input('descricao');
@@ -91,6 +93,7 @@ class ConteudoController extends Controller
         $area->img = $file;
         $area->nivel = 2;
         $area->icone='book';
+        $area->id_area_relacionada = $idArea;
         $area->save();
         return redirect(url()->previous());
     }
