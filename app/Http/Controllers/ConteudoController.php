@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class ConteudoController extends Controller
 {
     protected function  ehAluno() {   
-        $ehProfessor = User::select('isTeacher')->where('id',auth()->user()->id)->get();
-        if ($ehProfessor==['1'])
+        $user = User::where('id',auth()->user()->id)->first();
+        if ($user->isTeacher == 1)
             return false;
         return true;
     }
