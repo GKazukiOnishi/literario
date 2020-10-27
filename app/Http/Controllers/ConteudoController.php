@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Conteudo;
 use App\Models\Area;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+
 
 class ConteudoController extends Controller
 {
-    
+    protected function  ehAluno()
+    {   $ehProfessor = User::select('isTeacher')->where('id',auth()->user()->id)->get();
+        if ($ehProfessor==['1'])
+         return false;
+        return true; 
+    }
+
     function carregarPaginaSecoes(Request $req) {
+        if (!$this->ehAluno()){
         $professorAssociado = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
             if ($professorAssociado=='[]'){
             $conteudo = new Conteudo; 
@@ -20,18 +29,6 @@ class ConteudoController extends Controller
             $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
             $areasFixas = [['nome'=>'Literatura','nivel'=>1,'icone'=>'book'],['nome'=>'Gramática','nivel'=>1,'icone'=>'book'],['nome'=>'Redação','nivel'=>1,'icone'=>'book']];
 
-            // foreach ($areasFixas as $campo => $valor)
-            // {
-            //     echo $areasFixas['nome']
-            //     $area = New Area();
-            //     $area->nome = $areasFixas['nome'];
-            //     $area->nivel = $areasFixas['nivel'];
-            //     $area->icone=$areasFixas['icone'];
-            //     $area->id_conteudo = $idConteudo;
-            //     $area->save();
-            // }
-            
-
         $req->session()->put('perfil','professor');
         if (session('perfil') == 'professor') {
             $menus = [];
@@ -39,7 +36,7 @@ class ConteudoController extends Controller
 
             //conteúdos
             $areas = Area::all();
-            array_push($menus, ['id'=>2,'nome'=>'Literatura','icone'=>'book','conteudo'=>$areas]);
+            array_push($menus, ['id'=>2,'nome'=>'Lieratura','icone'=>'book','conteudo'=>$areas]);
             $conteudoGra = [['img'=>'img/classes-gramaticais.jpg','nome'=>'Classes Gramaticais','descricao'=>'as dez classes gramaticais........'],
                             ['img'=>'img/acentos.jpg','nome'=>'Ortografia e Acentuação','descricao'=>'tudo sobre ortografia e acentuação.....'],
                             ['img'=>'img/sintaxe.jpg','nome'=>'Sintaxe','descricao'=>'componentes, exemplos........']];
@@ -53,10 +50,14 @@ class ConteudoController extends Controller
             return view('professor.principal',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'principal']);
         }
     }
-
+    else{
+        return view('aluno.principal');
+    }
+    }
     function carregarPaginaSubsecoes($idArea, Request $req) {
-        $req->session()->put('perfil','professor');
-        if (session('perfil') == 'professor') {
+        if (!$this->ehAluno()){
+        // $req->session()->put('perfil','professor');
+        // if (session('perfil') == 'professor') {
             $menus = [];
             if ($idArea == '2') {
                 $conteudosSec1T = [['id'=>1,'nome'=>'Conteúdo 1','descricao'=>'Descrição do conteúdo'],['id'=>2,'nome'=>'Conteúdo 2','descricao'=>'Descrição do conteúdo'],['id'=>3,'nome'=>'Conteúdo 3','descricao'=>'Descrição do conteúdo'],['id'=>4,'nome'=>'Conteúdo 4','descricao'=>'Descrição do conteúdo']];
@@ -72,9 +73,14 @@ class ConteudoController extends Controller
 
             return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'conteudo','idArea'=>$idArea]);
         }
+        else
+        {
+            return view('aluno.conteudo');
+        }
     }
-    
+
     function cadastrarSecao($idArea, Request $req) {
+        if (!$this->ehAluno()){ //aluno não pode cadastrar nada
         $area = new Area();
         echo $req;
         $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get()->first();
@@ -89,20 +95,25 @@ class ConteudoController extends Controller
         $area->icone='book';
         $area->save();
         return redirect(url()->previous());
+        }
     }
 
     function cadastrarSubsecao($idArea, $idSecao, Request $req) {
+        if (!$this->ehAluno()){ //aluno não pode cadastrar nada
         $nome = $req->input('nome');
         return redirect(url()->previous());
+        }
     }
 
     function cadastrarConteudo($idArea, $idSecao, $idSubsecao, Request $req) {
+        if (!$this->ehAluno()){
         $nome = $req->input('nome');
         $descricao = $req->input('descricao');
         $md5Name = md5_file($req->file('arq')->getRealPath());
         $guessExtension = $req->file('arq')->guessExtension();
         $file = $req->file('arq')->storeAs('storage', $md5Name.'.'.$guessExtension);
         return redirect(url()->previous());
+        }
     }
 
     function baixarConteudo($idArea, $idSecao, $idSubsecao, $idConteudo) {
