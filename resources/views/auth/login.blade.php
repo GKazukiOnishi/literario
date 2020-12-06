@@ -96,7 +96,7 @@
                             <span class='txt1'>
                                 Esqueceu
                             </span>
-                            <a class='txt2' href='#'>
+                            <a class='txt2' href='https://suap.ifsp.edu.br/comum/solicitar_trocar_senha/' target='_blank'>
                                 Usuário / Senha?
                             </a>
                         </div>
