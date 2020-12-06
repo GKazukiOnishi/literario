@@ -33,11 +33,23 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownConfig">
                         <div class="card">
                             <div class="card-body">
-                                Chat aqui
+                                Chat aquiddddd
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+  
                 <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="Foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
             </div>
         </div>
@@ -49,16 +61,31 @@
         <div class="collapse navbar-collapse ml-4 ml-lg-auto" id="navbarSupportedContent">
             <div class="ml-auto d-none d-lg-block">
                 <div class="d-flex flex-row">
-                    <div class="dropdown mr-3">
-                        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownConfigUl" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" style="background-color: #2a659d; color:#fff">
-                            <i class="material-icons mt-1">notifications</i><span class="badge badge-dark">{{$qtdNotificacoes}}</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownConfigUl">
-                            <div class="card">
-                                <div class="card-body">
-                                    Chat aqui
-                                </div>
+              
+                                @guest
+                               
+                                @if (Route::has('register'))
+                                 
+                                @endif
+                            @else
+                                
+                                    <a id="navbarDropdown " class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+    
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
                             </div>
                         </div>
                     </div>
