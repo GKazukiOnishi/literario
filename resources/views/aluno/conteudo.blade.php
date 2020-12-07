@@ -5,7 +5,7 @@
     <div class="tab-content" id="v-nav-tabContent">
         @foreach ($menus as $menu)
             <div class="tab-pane fade show {{$loop->first?'active':''}}" id="v-nav-{{$menu['id']}}" role="tabpanel" aria-labelledby="v-nav-{{$menu['id']}}-tab">
-                <div class="container">=
+                <div class="container">
                     @if ($idArea == 3)
                         <div class="row justify-content-end mb-4">
                             <div class="col-6 w-100">
