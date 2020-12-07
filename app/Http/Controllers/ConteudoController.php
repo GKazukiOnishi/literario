@@ -22,62 +22,69 @@ class ConteudoController extends Controller
         return ['id'=>$area->id,'nome'=>$area->nome,'descricao'=>$area->descricao,'img'=>$area->img,'icone'=>$area->icone];
     }
 
+    function montarMenusSecoes($idConteudo) {
+        $menus = [];
+        foreach(Area::where('nivel',1)->where('id_conteudo',$idConteudo)->get() as $area) {
+            array_push($menus, $this->convertAreaToArray($area));
+        }
+        array_unshift($menus, ['id'=>0,'nome'=>'Estatística','icone'=>'timeline']);
+        
+        $menusComConteudo = [];
+        foreach($menus as $menu) {
+            $conteudos = [];
+            foreach(Area::where('nivel',2)->where('id_conteudo',$idConteudo)->where('id_area_relacionada',$menu['id'])->get() as $area) {
+                array_push($conteudos, $this->convertAreaToArray($area));
+            }
+            $menu['conteudo'] = $conteudos;
+            array_push($menusComConteudo, $menu);
+        }
+        return $menusComConteudo;
+    }
+
     function carregarPaginaSecoes(Request $req) {
         if (!$this->ehAluno()) {
-            $professorAssociado = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
-            if ($professorAssociado=='[]'){
-                $conteudo = new Conteudo; 
-                $conteudo->id_professor = auth()->user()->id;
-                $conteudo -> save();
-            }
-            $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get();
+            $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->first()->id;            
 
-            $menus = [];
-            foreach(Area::where('nivel',1)->get() as $area) {
-                array_push($menus, $this->convertAreaToArray($area));
-            }
-            array_unshift($menus, ['id'=>0,'nome'=>'Estatística','icone'=>'timeline']);
-
-            
-            $menus = array_map(function ($menu) {
-                $conteudos = [];
-                foreach(Area::where('nivel',2)->where('id_area_relacionada',$menu['id'])->get() as $area) {
-                    array_push($conteudos, $this->convertAreaToArray($area));
-                }
-                $menu['conteudo'] = $conteudos;
-                return $menu;
-            }, $menus);
-
-            return view('professor.principal',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'principal']);
+            return view('professor.principal',['menus'=>$this->montarMenusSecoes($idConteudo),'css'=>'principal']);
         }
         else{
-            return view('aluno.principal');
+            //Conteudo::select('id')->where('id_professor',auth()->user()->id_professor)->first()->id;
+            $idConteudo = 1;
+            
+            return view('aluno.principal',['menus'=>$this->montarMenusSecoes($idConteudo),'css'=>'principal']);
         }
+    }
+
+    function montarMenusSubsecoes($idConteudo, $idArea) {
+        $menus = [];
+        foreach(Area::where('nivel',2)->where('id_conteudo',$idConteudo)->where('id_area_relacionada',$idArea)->get() as $area) {
+            $menu = $this->convertAreaToArray($area);
+            $subsecoes = [];
+            foreach(Area::where('nivel',3)->where('id_conteudo',$idConteudo)->where('id_area_relacionada',$menu['id'])->get() as $area) {
+                $subsecao = $this->convertAreaToArray($area);
+                $subsecao['conteudo'] = [];
+                foreach(Area::where('nivel',4)->where('id_conteudo',$idConteudo)->where('id_area_relacionada',$subsecao['id'])->get() as $conteudo) {
+                    array_push($subsecao['conteudo'], $this->convertAreaToArray($conteudo));
+                }
+                array_push($subsecoes, $subsecao);
+            }
+            $menu['subsecao'] = $subsecoes;
+            array_push($menus, $menu);
+        }
+        return $menus;
     }
 
     function carregarPaginaSubsecoes($idArea, Request $req) {
         if (!$this->ehAluno()){
-            $menus = [];
-            foreach(Area::where('nivel',2)->where('id_area_relacionada',$idArea)->get() as $area) {
-                $menu = $this->convertAreaToArray($area);
-                $subsecoes = [];
-                foreach(Area::where('nivel',3)->where('id_area_relacionada',$menu['id'])->get() as $area) {
-                    $subsecao = $this->convertAreaToArray($area);
-                    $subsecao['conteudo'] = [];
-                    foreach(Area::where('nivel',4)->where('id_area_relacionada',$subsecao['id'])->get() as $conteudo) {
-                        array_push($subsecao['conteudo'], $this->convertAreaToArray($conteudo));
-                    }
-                    array_push($subsecoes, $subsecao);
-                }
-                $menu['subsecao'] = $subsecoes;
-                array_push($menus, $menu);
-            }
+            $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->first()->id;
 
-            return view('professor.conteudo',['qtdNotificacoes'=>'5','menus'=>$menus,'css'=>'conteudo','idArea'=>$idArea]);
+            return view('professor.conteudo',['menus'=>$this->montarMenusSubsecoes($idConteudo, $idArea),'css'=>'conteudo','idArea'=>$idArea]);
         } 
         else
         {
-            return view('aluno.conteudo');
+            $idConteudo = 1;
+
+            return view('aluno.conteudo',['menus'=>$this->montarMenusSubsecoes($idConteudo, $idArea),'css'=>'conteudo','idArea'=>$idArea]);
         }
     }
 
