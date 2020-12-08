@@ -51,15 +51,23 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title"><b>{{$conteudo['nome']}}</b></h5>
                                                     <p class="card-text">{{$conteudo['descricao']}}</p>
-                                                    <form action="/conteudo/{{$idArea}}/{{$menu['id']}}/{{$subsecao['id']}}/{{$conteudo['id']}}" method="GET">
+                                                <form action="/conteudo/{{$idArea}}/{{$menu['id']}}/{{$subsecao['id']}}/{{$conteudo['id']}}/" method="GET">
+                                                   
                                                         <button type="submit" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff"><i class="material-icons mt-1">cloud_download</i></button>
                                                     </form>
+                                    
+                                
                                                     <button type="button" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff" data-toggle="modal" data-target="#EditConteudo{{$loop->parent->parent->parent->iteration.$loop->parent->parent->iteration.$conteudo['index']}}" data-whatever="Editar">
                                                         <i class="material-icons mt-1">edit</i>
                                                     </button>
-                                                    <button type="button" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff">
+                                                    <form>
+                                                <form action="/deleteSecao/{{$idArea}}/{{$conteudo['id']}}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff">
                                                         <i class="material-icons mt-1">delete</i>
                                                     </button>
+                                                </form>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -73,14 +81,15 @@
                                                   </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                  <form action="#">
+                                                  <form action="/editarSecao/{{$conteudo['id']}}" method="POST" enctype="multipart/form-data">
+                                                      @csrf
                                                     <div class="form-group">
                                                       <label for="name" class="col-form-label">Título:</label>
-                                                      <input type="text" class="form-control" id="form-principal-name">
+                                                    <input type="text" class="form-control" id="form-principal-name" name = "nome" value = "{{$conteudo['nome']}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label">Descrição:</label>
-                                                        <input type="text" class="form-control" id="form-principal-name">
+                                                        <input type="text" class="form-control" id="form-principal-name" name = "descricao"value = "{{$conteudo['descricao']}}">
                                                       </div>
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label">Arquivo:</label>
@@ -106,7 +115,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/conteudo/{{$idArea}}/{{$menu['id']}}/{{$subsecao['id']}}" method="POST" enctype="multipart/form-data">
+                                    <form action="/editarSecao/{{$conteudo['id']}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                         <label for="name" class="col-form-label">Título:</label>
@@ -159,11 +168,14 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#">
+                            <form action="/delete/{{$idArea}}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Subseções</label>
-                                    <select class="form-control" id="form-principal-select">
-                                        <option>lista com subseções</option>
+                                    <select class="form-control" id="form-principal-select" name = "subcecoes">
+                                        @foreach ($menu['subsecao'] as $subsecao)
+                                    <option value = {{$subsecao['id']}}>{{$subsecao['nome']}}</option>
+                                        @endforeach
                                     </select>
                                     </div>
                                     <button type="submit" class="btn btn-secondary float-right">Salvar</button>

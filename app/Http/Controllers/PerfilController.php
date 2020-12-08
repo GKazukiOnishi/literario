@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Controllers\Auth;
 
 class PerfilController extends Controller
 {
@@ -20,5 +21,9 @@ class PerfilController extends Controller
 
     function atualizarPerfil(Request $req) {
         return $this->carregarPagina($req);
+    }
+    function logout()
+    {
+        return redirect('/login'); //redireciona o usuario para a pagina inicial
     }
 }

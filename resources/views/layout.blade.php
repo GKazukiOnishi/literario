@@ -23,20 +23,15 @@
         <div class="navbar-brand ml-auto d-lg-none">
             <div class="d-flex flex-row">
                 <div class="dropdown mr-3">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownConfig" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons mt-1">notifications</i><span class="badge badge-dark">{{$qtdNotificacoes}}</span>
-                    </button>
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownConfig">
                         <div class="card">
-                            <div class="card-body">
-                                Chat aquiddddd
-                            </div>
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item" href="{{ route('logout2') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Sair') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -47,13 +42,10 @@
                     </div>
                 </div>
   
-                <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="Foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a>
+                {{-- <a href="/perfil"><img src="{{ asset('img/user1.png') }}" alt="Foto de perfil" class="rounded-circle mr-3" style="width: 3rem; height: 3rem;"></a> --}}
             </div>
         </div>
-        <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+   
 
         <div class="collapse navbar-collapse ml-4 ml-lg-auto" id="navbarSupportedContent">
             <div class="ml-auto d-none d-lg-block">
@@ -74,7 +66,7 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            {{ __('Sair') }}
                                         </a>
     
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

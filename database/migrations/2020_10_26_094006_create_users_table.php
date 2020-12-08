@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table -> boolean('isTeacher')->nullable();
+            $table ->int('id_professor')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,6 +30,7 @@ class CreateUsersTable extends Migration
         array(
             'email' => 'sp1111111',
             'name' => 'Professor',
+            'id_professor' => null,
             'password' => '$2y$10$tBKUSS0QZCZTicgQejWBb.u2ikNhlu2qDNSuxjhfL2NMxMjLdipWa', //professor
             'isTeacher' => true),
         );
@@ -37,6 +39,7 @@ class CreateUsersTable extends Migration
         array(
             'email' => 'sp123456789',
             'name' => 'Aluno',
+            'id_professor' =>'sp1111111',
             'password' => '$2y$10$4YxmWoW3dvTFiO9w2mtvxeXe8PUcKL8Fao4KIkdrqZIhsU9WTbPRS', //melhoraluno
             'isTeacher' => false),
         );

@@ -11,4 +11,9 @@ class LoginController extends Controller
     {
         return view('user.login',['qtdNotificacoes'=>'5','menus'=>null]);
     }
+    function fazerLogout()
+        {
+            return view('user.login',['qtdNotificacoes'=>'5','menus'=>null]);
+        }
+    
 }

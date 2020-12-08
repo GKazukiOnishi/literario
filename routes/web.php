@@ -20,19 +20,26 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/conteudo',[ConteudoController::class,'carregarPaginaSecoes'])->name('home');
-Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPaginaSubsecoes']);
+Route::get('/conteudo/{area}',[ConteudoController::class,'carregarPaginaSubsecoes'])->name('carregar');
 Route::get('/conteudo/{area}/{secao}/{subsecao}/{conteudo}',[ConteudoController::class,'baixarConteudo']);
 
 Route::post('/conteudo/{area}',[ConteudoController::class,'cadastrarSecao']);
 Route::post('/conteudo/{area}/{secao}',[ConteudoController::class,'cadastrarSubsecao']);
 Route::post('/conteudo/{area}/{secao}/{subsecao}',[ConteudoController::class,'cadastrarConteudo']);
+Route::post('/delete/{area}/',[ConteudoController::class,'excluirSubcecao']);
 
-Route::get('/exercicio/{area}/{secao}',[ExercicioController::class,'carregarPaginaExercicios']);
 
-Route::get('/redacao/{tema}/{aluno}',[RedacaoController::class,'carregarPaginaRedacao']);
+Route::post('/deleteSecao/{area}/{conteudo}/',[ConteudoController::class,'excluirSec']);
 
-Route::get('/perfil',[PerfilController::class,'carregarPagina']);
 Route::post('/perfil',[PerfilController::class,'atualizarPerfil']);
+Route::post('/editarSecao/{idArea}',[ConteudoController::class,'editarSecao']);
+Route::post('/deletarSecap/{idArea}',[ConteudoContoller::class,'editarSessao']);
+Route::get('/exercicio/{area}/{secao}',[ExercicioController::class,'carregarPaginaExercicios']);
+Route::get('/redacao/{tema}/{aluno}',[RedacaoController::class,'carregarPaginaRedacao']);
+Route::get('/perfil',[PerfilController::class,'carregarPagina']);
+Route::get('/',[PerfilController::class,'logout'])->name('logout2');
+
+
 
 Auth::routes();
 

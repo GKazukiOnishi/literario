@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Conteudo;
 use App\Models\Area;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -113,6 +114,8 @@ class ConteudoController extends Controller
         }
     }
 
+
+
     function cadastrarConteudo($idArea, $idSecao, $idSubsecao, Request $req) {
         if (!$this->ehAluno()) {
             $area = new Area();
@@ -132,10 +135,31 @@ class ConteudoController extends Controller
     }
 
     function baixarConteudo($idArea, $idSecao, $idSubsecao, $idConteudo) {
-        $area = Area::find($idConteudo);
-        $fileUrl = $area->img;
-        $extPos = strpos($fileUrl, '.');
-        $ext = substr($fileUrl,$extPos);
-        return Storage::download($fileUrl, $area->nome.$ext);
+            $area = Area::find($idConteudo);
+            $fileUrl = $area->img;
+            $extPos = strpos($fileUrl, '.');
+            $ext = substr($fileUrl,$extPos);
+            return Storage::download($fileUrl, $area->nome.$ext);
     }
+
+    function excluirSubcecao($parea){
+        $area = Area::find($_POST['subcecoes']);
+        $area->delete();
+        return redirect()->route('carregar',['area' => $parea]);
+    }
+    function editarSecao($parea,Request $req)
+    {
+        $area = Area::find($parea);
+        $area->descricao = $_POST['descricao'];
+        $area->nome = $_POST['nome'];
+        $area->save();
+        return redirect(url()->previous());
+    }
+    function excluirSec($parea, $conteudo)
+    {
+        $area = Area::find($parea);
+        $area->delete();
+        return redirect()->route('carregar',['area' => $parea]);
+    }
+    
 }
