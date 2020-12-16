@@ -52,13 +52,13 @@ CREATE TABLE `arquivo` (
 
 CREATE TABLE `exercicio` (
 	`id` int(10) NOT NULL AUTO_INCREMENT,
-	`nome` varchar(70) NOT NULL AUTO_INCREMENT,
+	`nome` varchar(70),
 	`enunciado` TEXT(1500) NOT NULL,
 	`cod_tipo` longtext(400) NOT NULL,
 	`id_area` int(10) NOT NULL,
-	`caminho` varchar(255) NOT NULL,
+	`caminho` varchar(255),
 	`tipo` varchar(255) NOT NULL,
-	`id_arquivo` varchar(255) NOT NULL,
+	`id_arquivo` varchar(255),
 	PRIMARY KEY (`id`)
 );
 
