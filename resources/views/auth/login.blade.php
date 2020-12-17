@@ -12,7 +12,7 @@
             <link rel="stylesheet" type="text/css" href="css/main.css">
 
     </head>
-    <body>'
+    <body>
 
 <div class="container">
  <div class='limiter'>
