@@ -8,7 +8,7 @@
             <button type="button" class="btn float-left mr-3" style="background-color: gray; color:#fff">
                 <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal2" data-whatever="DeleteSubsection">delete</i>
             </button>
-            <button type="button" class="btn float-left mr-3" style="background-color: gray; color:#fff">
+            <button type="button" onclick="apagarAlternativas();" class="btn float-left mr-3" style="background-color: gray; color:#fff">
               <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal3" data-whatever="Adicionar">add_box</i>
             </button><br><br> 
             
@@ -21,8 +21,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label>Exercício {{$index+1}} - Subseção: {{$exercicio['subsecao']}}</label>
-                                        <label>Com base em seu conhecimento, indique qual a melhor parte de desenvolver projetos para a disciplina de AW2.</label>
+                                        <label>Exercício {{$index+1}} - Subseção: {{$exercicio['subsecao']}}</label><br/>
+                                        @if (isset($exercicio['enunciado1']))
+                                            <label>{{$exercicio['enunciado1']}}</label><br/>
+                                            <img src="{{asset($exercicio['img'])}}" alt="Imagem {{$exercicio['nomeImg']}}" /><br/>
+                                            <label>{{$exercicio['enunciado2']}}</label>
+                                        @else
+                                            <label>{{$exercicio['enunciado']}}</label>
+                                        @endif
                                         @if ($exercicio['tipo'] == 'D')
                                             <textarea class="form-control" id="exampleFormControlTextarea{{$index}}" rows="3" value={{isset($exercicio['resolucao']) ? $exercicio['resolucao']['resposta'] : ""}}></textarea>
                                         @endif
@@ -128,12 +134,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="inputNomeImg" placeholder="Nome da imagem">
+                                <input type="text" name="nomeImg" class="form-control" id="inputNomeImg" placeholder="Nome da imagem">
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                                        <input type="file" name="img" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
                                         <label class="custom-file-label" for="inputGroupFile">Adicionar imagem</label>
                                     </div>
                                     <div class="input-group-append">
@@ -177,16 +183,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-4" id="alternativas">
-                            <div class="col">
+                        <div class="row mt-4">
+                            <div class="col-12">
                                 <label>Alternativas: </label>
-                                <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
+                                <button type="button" onclick="adicionarAlternativa();" class="btn mr-3" style="background-color: #2a659d; color:#fff">
                                     <i class="material-icons mt-1">add_box</i>
                                 </button>
                                 <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
                                     <i class="material-icons mt-1">reorder</i>
                                 </button>
                             </div>
+                            <div id="alternativas"></div>
                         </div>
                         <div class="row justify-content-end mt-4">
                             <button type="submit" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">Salvar</button>
@@ -206,5 +213,17 @@
     }
     function hide(){
         document.getElementById('alternativas').style.display ='none';
+    }
+    function adicionarAlternativa() {
+        const div = document.getElementById('alternativas')
+        const alt = document.createElement('input')
+        div.appendChild(alt)
+    }
+    function apagarAlternativas() {
+        const div = document.getElementById('alternativas')
+        const copy = [...div.childNodes]
+        for(let c of copy) {
+            div.removeChild(c)
+        }
     }
 </script>

@@ -18,7 +18,8 @@ class CreateExercicioTable extends Migration
             $table->string('nome', 70)->nullable();
             $table->text('enunciado');
             $table->integer('id_area');
-            $table->string('caminho')->nullable();
+            $table->string('nome_img')->nullable();
+            $table->string('img')->nullable();
             $table->string('tipo');
             $table->string('id_arquivo')->nullable();
             $table->rememberToken();

@@ -166,7 +166,7 @@
                             @foreach ($menu['conteudo'] as $conteudo)
                                 <div class="col-12 col-lg-4 mb-4 mb-lg-0">
                                     <div class="card">
-                                        <img src="{{$conteudo['img']}}" class="card-img-top" alt="Imagem {{$conteudo['nome']}}" width="230"
+                                        <img src="{{asset($conteudo['img'])}}" class="card-img-top" alt="Imagem {{$conteudo['nome']}}" width="230"
                                             height="230">
                                         <div class="card-body">
                                             <h5 class="card-title"><b>{{$conteudo['nome']}}</b></h5>

@@ -19,7 +19,7 @@ class ExercicioController extends Controller
     }
 
     function convertExercicioToArray(Exercicio $exercicio, $alternativas, $resolucao, $subsecao) {
-        return ['id'=>$exercicio->id,'nome'=>$exercicio->nome,'enunciado'=>$exercicio->enunciado,'tipo'=>$exercicio->tipo,'alternativas'=>$alternativas,'resolucao'=>$resolucao,'subsecao'=>$subsecao];
+        return ['id'=>$exercicio->id,'nome'=>$exercicio->nome,'enunciado'=>$exercicio->enunciado,'tipo'=>$exercicio->tipo,'alternativas'=>$alternativas,'resolucao'=>$resolucao,'subsecao'=>$subsecao,'img'=>$exercicio->img,'nomeImg'=>$exercicio->nome_img,'enunciado1'=>$exercicio->enunciado1,'enunciado2'=>$exercicio->enunciado2];
     }
 
     function convertAlternativaToArray(Alternativa $alternativa) {
@@ -40,6 +40,12 @@ class ExercicioController extends Controller
         foreach(Area::where('id_area_relacionada',$idSecao)->where('nivel',3)->get() as $area) {
             array_push($subsecoes,$this->convertAreaToArray($area));
             foreach(Exercicio::where('id_area',$area->id)->get() as $exercicio) {
+                if($exercicio->img !== null) {
+                    $pos = strpos($exercicio->enunciado, $exercicio->nome_img);
+                    $exercicio->enunciado1 = substr($exercicio->enunciado, 0, $pos-1);
+                    $exercicio->enunciado2 = substr($exercicio->enunciado, $pos + strlen($exercicio->nome_img) + 1);
+                }
+
                 if($exercicio->tipo == 'A') {
                     $alternativas = [];
                     foreach(Alternativa::where('id_exercicio',$exercicio->id)->get() as $alternativa) {
@@ -71,9 +77,18 @@ class ExercicioController extends Controller
     function cadastrarExercicio($idArea, $idSecao, Request $req) {
         if (!$this->ehAluno()) {
             $exercicio = new Exercicio();
-            $exercicio->tipo = $_POST['tipo'];
-            $exercicio->enunciado = $_POST['enunciado'];
-            $exercicio->id_area = $_POST['subsecao'];
+            $exercicio->tipo = $req->input('tipo');
+            $exercicio->enunciado = $req->input('enunciado');
+            $exercicio->id_area = $req->input('subsecao');
+            
+            if($req->file('img') !== null && $req->input('nomeImg') !== null) {
+                $md5Name = md5_file($req->file('img')->getRealPath());
+                $guessExtension = $req->file('img')->guessExtension();
+                $file = $req->file('img')->storeAs('images', $md5Name.'.'.$guessExtension);
+                $exercicio->img = $file;
+                $exercicio->nome_img = $req->input('nomeImg');
+            }
+
             $exercicio->save();
             return redirect(url()->previous());
         }
