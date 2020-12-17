@@ -15,13 +15,12 @@ class CreateExercicioTable extends Migration
     {
         Schema::create('exercicio', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('nome', 70);
+            $table->string('nome', 70)->nullable();
             $table->text('enunciado');
-            $table->string('cod_tipo', 20);
             $table->integer('id_area');
-            $table->string('caminho');
+            $table->string('caminho')->nullable();
             $table->string('tipo');
-            $table->string('id_arquivo');
+            $table->string('id_arquivo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

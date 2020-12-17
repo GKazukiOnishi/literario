@@ -34,7 +34,10 @@ Route::post('/deleteSecao/{area}/{conteudo}/',[ConteudoController::class,'exclui
 Route::post('/perfil',[PerfilController::class,'atualizarPerfil']);
 Route::post('/editarSecao/{idArea}',[ConteudoController::class,'editarSecao']);
 Route::post('/deletarSecap/{idArea}',[ConteudoContoller::class,'editarSessao']);
+
 Route::get('/exercicio/{area}/{secao}',[ExercicioController::class,'carregarPaginaExercicios']);
+Route::post('/exercicio/{area}/{secao}',[ExercicioController::class,'cadastrarExercicio']);
+
 Route::get('/redacao/{tema}/{aluno}',[RedacaoController::class,'carregarPaginaRedacao']);
 Route::get('/perfil',[PerfilController::class,'carregarPagina']);
 Route::get('/',[PerfilController::class,'logout'])->name('logout2');

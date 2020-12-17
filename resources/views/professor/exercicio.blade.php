@@ -24,7 +24,7 @@
                                         <label>Exercício {{$index+1}} - Subseção: {{$exercicio['subsecao']}}</label>
                                         <label>Com base em seu conhecimento, indique qual a melhor parte de desenvolver projetos para a disciplina de AW2.</label>
                                         @if ($exercicio['tipo'] == 'D')
-                                            <textarea class="form-control" id="exampleFormControlTextarea{{$index}}" rows="3" value={{$exercicio['resolucao']['resposta']}}></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea{{$index}}" rows="3" value={{isset($exercicio['resolucao']) ? $exercicio['resolucao']['resposta'] : ""}}></textarea>
                                         @endif
                                     </div>
                                 </div>
@@ -117,79 +117,82 @@
               </button>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="textoEnunciado">Enunciado</label>
-                                <textarea class="form-control" id="textoEnunciado" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="inputNomeImg" placeholder="Nome da imagem">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-                                    <label class="custom-file-label" for="inputGroupFile">Adicionar imagem</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon">
-                                        +
-                                    </button>
+                <form action="/exercicio/{{$area}}/{{$secao}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="textoEnunciado">Enunciado</label>
+                                    <textarea name="enunciado" class="form-control" id="textoEnunciado" rows="3"></textarea>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-6">
-                            <fieldset class="form-group">
-                                <div class="row">
-                                <legend class="col-form-label col-sm-4 pt-0">Tipo de exercício</legend>
-                                <div class="col-sm-8">
-                                    <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipoExe" id="radioDissertativo" onclick="hide();">
-                                    <label class="form-check-label" for="radioDissertativo" id="labelDiss">
-                                        Dissertativo
-                                    </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="inputNomeImg" placeholder="Nome da imagem">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                                        <label class="custom-file-label" for="inputGroupFile">Adicionar imagem</label>
                                     </div>
-                                    <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipoExe" id="radioMultipla" onclick="show();" checked>
-                                    <label class="form-check-label" for="radioMultipla" id="labelMult">
-                                        Múltipla escolha
-                                    </label>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon">
+                                            +
+                                        </button>
                                     </div>
                                 </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="subsection-select">Subseção</label>
-                                <select class="form-control" id="subsection-select">
-                                    @foreach ($subsecoes as $subsecao)
-                                        <option>{{$subsecao['nome']}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-4" id="alternativas" >
-                        <div class="col">
-                            <label>Alternativas: </label>
-                            <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
-                                <i class="material-icons mt-1">add_box</i>
-                            </button>
-                            <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
-                                <i class="material-icons mt-1">reorder</i>
-                            </button>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                    <legend class="col-form-label col-sm-4 pt-0">Tipo de exercício</legend>
+                                    <div class="col-sm-8">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo" value="D" id="radioDissertativo" onclick="hide();">
+                                        <label class="form-check-label" for="radioDissertativo" id="labelDiss">
+                                            Dissertativo
+                                        </label>
+                                        </div>
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipo" value="A" id="radioMultipla" onclick="show();" checked>
+                                        <label class="form-check-label" for="radioMultipla" id="labelMult">
+                                            Múltipla escolha
+                                        </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="subsection-select">Subseção</label>
+                                    <select class="form-control" id="subsection-select" name="subsecao">
+                                        @foreach ($subsecoes as $subsecao)
+                                            <option value="{{$subsecao['id']}}">{{$subsecao['nome']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4" id="alternativas">
+                            <div class="col">
+                                <label>Alternativas: </label>
+                                <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
+                                    <i class="material-icons mt-1">add_box</i>
+                                </button>
+                                <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
+                                    <i class="material-icons mt-1">reorder</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end mt-4">
+                            <button type="submit" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">Salvar</button>
                         </div>
                     </div>
-                    <div class="row justify-content-end mt-4">
-                        <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">Salvar</button>
-                    </div>
-                </div>
+                </form>
             </div>
           </div>
         </div>

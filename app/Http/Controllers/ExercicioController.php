@@ -47,7 +47,10 @@ class ExercicioController extends Controller
                     }
                     array_push($exercicios,$this->convertExercicioToArray($exercicio,$alternativas,[],$area->nome));
                 } else {
-                    $resolucao = convertResolucaoToArray(Resolucao::where('id_exercicio',$exercicio->id)->first());
+                    $resolucao = Resolucao::where('id_exercicio',$exercicio->id)->first();
+                    if (isset($resolucao)) {
+                        $resolucao = convertResolucaoToArray($resolucao);
+                    }
                     array_push($exercicios,$this->convertExercicioToArray($exercicio,[],$resolucao,$area->nome));
                 }
             }
@@ -58,9 +61,21 @@ class ExercicioController extends Controller
     function carregarPaginaExercicios($idArea, $idSecao, Request $req) {
         $dados = $this->montarExerciciosSubsecao($idSecao);
         if (!$this->ehAluno()) {
-            return view('professor.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes']]);
+            var_dump($dados);
+            return view('professor.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes'],'secao'=>$idSecao,'area'=>$idArea]);
         } else {
             return view('aluno.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes']]);
+        }
+    }
+
+    function cadastrarExercicio($idArea, $idSecao, Request $req) {
+        if (!$this->ehAluno()) {
+            $exercicio = new Exercicio();
+            $exercicio->tipo = $_POST['tipo'];
+            $exercicio->enunciado = $_POST['enunciado'];
+            $exercicio->id_area = $_POST['subsecao'];
+            $exercicio->save();
+            return redirect(url()->previous());
         }
     }
 }
