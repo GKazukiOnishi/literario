@@ -90,6 +90,24 @@ class ExercicioController extends Controller
             }
 
             $exercicio->save();
+
+            if($exercicio->tipo == 'A') {
+                $cont = 0;
+                while(true) {
+                    $valor = $req->input('inputNomeAlternativa'.$cont);
+                    if ($valor !== null) {
+                        $alternativa = new Alternativa();
+                        $alternativa->id_exercicio = $exercicio->id;
+                        $alternativa->texto = $valor;
+                        $alternativa->ordem = $cont;
+                        $alternativa->save();
+                    } else {
+                        break;
+                    }
+                    $cont++;
+                }
+            }
+
             return redirect(url()->previous());
         }
     }

@@ -193,7 +193,10 @@
                                     <i class="material-icons mt-1">reorder</i>
                                 </button>
                             </div>
-                            <div id="alternativas"></div>
+                            <div class="col-12">
+                                <div class="form-check" id="alternativas">
+                                </div>
+                            </div>
                         </div>
                         <div class="row justify-content-end mt-4">
                             <button type="submit" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff">Salvar</button>
@@ -208,6 +211,7 @@
 @endsection
 
 <script>
+    let contador = 0
     function show(){
         document.getElementById('alternativas').style.display ='flex';
     }
@@ -216,8 +220,35 @@
     }
     function adicionarAlternativa() {
         const div = document.getElementById('alternativas')
-        const alt = document.createElement('input')
-        div.appendChild(alt)
+
+        const linha = document.createElement('div')
+        linha.classList.add('d-flex')
+        linha.classList.add('align-items-center')
+
+        const input = document.createElement('input')
+        input.setAttribute('type', 'radio')
+        input.setAttribute('id', 'inputAlternativa'+contador)
+        input.classList.add('form-check-input')
+
+        const label = document.createElement('label')
+        label.classList.add('form-check-label')
+        label.setAttribute('for', 'inputAlternativa'+contador)
+
+        const inputNome = document.createElement('input')
+        inputNome.setAttribute('type', 'text')
+        inputNome.classList.add('form-control')
+        inputNome.setAttribute('id', 'inputNomeAlternativa'+contador)
+        inputNome.setAttribute('name', 'inputNomeAlternativa'+contador)
+
+        const br = document.createElement('br')
+
+        label.appendChild(inputNome)
+        linha.appendChild(input)
+        linha.appendChild(label)
+        div.appendChild(linha)
+        div.appendChild(br)
+
+        contador++
     }
     function apagarAlternativas() {
         const div = document.getElementById('alternativas')
@@ -225,5 +256,6 @@
         for(let c of copy) {
             div.removeChild(c)
         }
+        contador = 0
     }
 </script>
