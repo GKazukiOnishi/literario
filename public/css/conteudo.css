@@ -20,3 +20,6 @@ a:hover
   color: #2a659d;
   font-weight: bold;
 }
+.drop{
+    left: auto;
+}

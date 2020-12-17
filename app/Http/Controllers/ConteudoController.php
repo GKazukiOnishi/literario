@@ -84,7 +84,6 @@ class ConteudoController extends Controller
         else
         {
             $idConteudo = 1;
-
             return view('aluno.conteudo',['menus'=>$this->montarMenusSubsecoes($idConteudo, $idArea),'css'=>'conteudo','idArea'=>$idArea]);
         }
     }
@@ -104,7 +103,7 @@ class ConteudoController extends Controller
             $area->icone='book';
             $area->id_area_relacionada = $idArea;
             $area->save();
-            return redirect(url()->previous());
+            return redirect()->route('carregar',['area' => $idArea]);
         }
     }
 
@@ -132,9 +131,9 @@ class ConteudoController extends Controller
             $area->descricao = $req->input('descricao');
             $area->nivel = 4;
             $area->id_area_relacionada = $idSubsecao;
-            $md5Name = md5_file($req->file('arq')->getRealPath());
-            $guessExtension = $req->file('arq')->guessExtension();
-            $file = $req->file('arq')->storeAs('storage', $md5Name.'.'.$guessExtension);
+            $md5Name = md5_file($req->file('arquivo')->getRealPath());
+            $guessExtension = $req->file('arquivo')->guessExtension();
+            $file = $req->file('arquivo')->storeAs('storage', $md5Name.'.'.$guessExtension);
             $area->img = $file;
             $area->save();
             return redirect(url()->previous());
@@ -146,27 +145,50 @@ class ConteudoController extends Controller
             $fileUrl = $area->img;
             $extPos = strpos($fileUrl, '.');
             $ext = substr($fileUrl,$extPos);
+
             return Storage::download($fileUrl, $area->nome.$ext);
     }
 
     function excluirSubcecao($parea){
         $area = Area::find($_POST['subcecoes']);
+        foreach(Area::where('id_conteudo',1)->where('id_area_relacionada',$area['id'])->get() as $areaExcluir){
+            $areaExcluir->delete();
+         }
         $area->delete();
         return redirect()->route('carregar',['area' => $parea]);
     }
+
     function editarSecao($parea,Request $req)
     {
         $area = Area::find($parea);
+        $fileUrl = $area->img;
+        $extPos = strpos($fileUrl, '.');
+        $ext = substr($fileUrl,$extPos);
+        Storage::delete($fileUrl, $area->nome.$ext);
+
+
+        $md5Name = md5_file($req->file('arq')->getRealPath());
+        $guessExtension = $req->file('arq')->guessExtension();
+        $file = $req->file('arq')->storeAs('storage', $md5Name.'.'.$guessExtension);
+        $area->img = $file;
         $area->descricao = $_POST['descricao'];
         $area->nome = $_POST['nome'];
         $area->save();
+
         return redirect(url()->previous());
     }
     function excluirSec($parea, $conteudo)
     {
+        $idConteudo = Conteudo::select('id')->where('id_professor',auth()->user()->id)->get()->first();
+         foreach(Area::where('id_conteudo',1)->where('id_area_relacionada',$parea)->get() as $areaExcluir){
+            foreach(Area::where('id_conteudo',1)->where('id_area_relacionada',$areaExcluir['id'])->get() as $areaExc){
+                $areaExc -> delete();
+            }
+            $areaExcluir->delete();
+         }
         $area = Area::find($parea);
         $area->delete();
-        return redirect()->route('carregar',['area' => $parea]);
+        return redirect(url()->previous());
     }
     
 }

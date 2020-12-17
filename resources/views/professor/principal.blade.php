@@ -174,20 +174,48 @@
                                             <a href="/conteudo/{{$menu['id']}}" class="btn btn-sm float-right mr-3"
                                                 style="background-color: #2a659d; color:#fff"><i
                                                     class="material-icons mt-1">chevron_right</i></a>
+
                                             <button type="button" class="btn btn-sm float-right mr-3"
                                                 style="background-color: #2a659d; color:#fff">
                                                 <i class="material-icons mt-1">edit</i>
                                             </button>
-                                            <button type="button" class="btn btn-sm float-right mr-3"
-                                                style="background-color: #2a659d; color:#fff">
-                                                <i class="material-icons mt-1">delete</i>
-                                            </button>
+                                          
+                                          
+                                                <button type="button" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff" data-toggle="modal" data-target="#modalDeleteSecao">
+                                                    <i class="material-icons mt-1">delete</i>
+                                                </button>
+                                          
+                                          
                                         </div>
                                     </div>
                                     <br>
                                 </div>
                             @endforeach
                         </div>
+                    
+                        <div class="modal fade" id="modalDeleteSecao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Exclusão de Conteúdo</h5>
+                                  <form action="/deleteSecao/{{isset($conteudo)?$conteudo['id']:"0"}}/{{isset($conteudo)?$conteudo['id']:"0"}}" method="POST">
+                                    @csrf
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Você tem certeza que deseja excluir {{isset($conteudo)?$conteudo['nome']:""}} e todas os conteúdos relacionados a ele?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                  <button type="submit" class="btn btn-primary">Excluir</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
+
                         @if ($menu['nome'] == 'Redação')
                             <h4 class="bg-light" style="padding: 10px; text-align: center">Entregas de alunos</h4>
                             <div class="container">
@@ -309,6 +337,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
+            
                                         <form action="/conteudo/{{$menu['id']}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
