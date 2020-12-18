@@ -37,6 +37,8 @@ Route::post('/deletarSecap/{idArea}',[ConteudoContoller::class,'editarSessao']);
 
 Route::get('/exercicio/{area}/{secao}',[ExercicioController::class,'carregarPaginaExercicios']);
 Route::post('/exercicio/{area}/{secao}',[ExercicioController::class,'cadastrarExercicio']);
+Route::post('/exercicio/{area}/{secao}/{idExercicio}',[ExercicioController::class,'salvarGabarito']);
+Route::post('/exercicio/delete',[ExercicioController::class,'excluirExercicio']);
 
 Route::get('/redacao/{tema}/{aluno}',[RedacaoController::class,'carregarPaginaRedacao']);
 Route::get('/perfil',[PerfilController::class,'carregarPagina']);

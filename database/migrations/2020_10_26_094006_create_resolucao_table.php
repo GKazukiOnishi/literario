@@ -15,10 +15,10 @@ class CreateResolucaoTable extends Migration
     {
         Schema::create('resolucao', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->text('resposta');
+            $table->text('resposta')->nullable();
             $table->string('id_exercicio');
-            $table->text('tipo');
-            $table->integer('id_arquivo');
+            $table->text('tipo')->nullable();
+            $table->integer('id_arquivo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
