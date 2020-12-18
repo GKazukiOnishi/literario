@@ -103,7 +103,7 @@ class ConteudoController extends Controller
             $area->icone='book';
             $area->id_area_relacionada = $idArea;
             $area->save();
-            return redirect()->route('carregar',['area' => $idArea]);
+            return redirect(url()->previous());
         }
     }
 

@@ -17,7 +17,7 @@ class CreateAlternativaTable extends Migration
             $table->integer('id', true);
             $table->integer('id_exercicio')->index('alternativa_fk0');
             $table->text('texto');
-            $table->boolean('ind_correto');
+            $table->boolean('ind_correto')->nullable();
             $table->integer('ordem');
             $table->rememberToken();
             $table->timestamps();

@@ -8,7 +8,7 @@
             <button type="button" class="btn float-left mr-3" style="background-color: gray; color:#fff">
                 <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal2" data-whatever="DeleteSubsection">delete</i>
             </button>
-            <button type="button" class="btn float-left mr-3" style="background-color: gray; color:#fff">
+            <button type="button" onclick="apagarAlternativas();" class="btn float-left mr-3" style="background-color: gray; color:#fff">
               <i class="material-icons mt-1" data-toggle="modal" data-target="#AddModal3" data-whatever="Adicionar">add_box</i>
             </button><br><br> 
             
@@ -17,43 +17,52 @@
             @foreach ($exercicios as $index=>$exercicio)
                 <div class="card m-3">
                     <div class="card-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Exercício {{$index+1}} - Subseção: {{$exercicio['subsecao']}}</label>
-                                        <label>Com base em seu conhecimento, indique qual a melhor parte de desenvolver projetos para a disciplina de AW2.</label>
-                                        @if ($exercicio['tipo'] == 'D')
-                                            <textarea class="form-control" id="exampleFormControlTextarea{{$index}}" rows="3" value={{isset($exercicio['resolucao']) ? $exercicio['resolucao']['resposta'] : ""}}></textarea>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            @if ($exercicio['tipo'] == 'A')
-                                <div class="row mt-4">
+                        <form action="/exercicio/{{$area}}/{{$secao}}/{{$exercicio['id']}}" method="POST">
+                            @csrf
+                            <div class="container">
+                                <div class="row">
                                     <div class="col-12">
-                                        <fieldset class="form-group">
-                                            <div class="row">
-                                            <legend class="col-form-label col-sm-2 pt-0">Alternativas</legend>
-                                            <div class="col-sm-10">
-                                                @foreach ($exercicio['alternativas'] as $index=>$alternativa)
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="resposta" id="resp{{$index}}">
-                                                        <label class="form-check-label" for="resp{{$index}}">
-                                                            {{$alternativa['texto']}}
-                                                        </label>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            </div>
-                                        </fieldset>
+                                        <div class="form-group">
+                                            <label>Exercício {{$index+1}} - Subseção: {{$exercicio['subsecao']}}</label><br/>
+                                            @if (isset($exercicio['enunciado1']))
+                                                <label>{{$exercicio['enunciado1']}}</label><br/>
+                                                <img src="{{asset($exercicio['img'])}}" alt="Imagem {{$exercicio['nomeImg']}}" /><br/>
+                                                <label>{{$exercicio['enunciado2']}}</label>
+                                            @else
+                                                <label>{{$exercicio['enunciado']}}</label>
+                                            @endif
+                                            @if ($exercicio['tipo'] == 'D')
+                                                <textarea class="form-control" name="resposta" id="exampleFormControlTextarea{{$index}}" rows="3">{{isset($exercicio['resolucao']) ? $exercicio['resolucao']['resposta'] : ''}}</textarea>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            @endif
-                            <div class="row justify-content-end mt-4">
-                                <button type="button" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff"><i data-toggle="modal" data-target="#AddModal1" data-whatever="Salvar">Salvar gabarito</i></button>
+                                @if ($exercicio['tipo'] == 'A')
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <div class="row">
+                                                <legend class="col-form-label col-sm-2 pt-0">Alternativas</legend>
+                                                <div class="col-sm-10">
+                                                    @foreach ($exercicio['alternativas'] as $j=>$alternativa)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="resposta" value="{{$alternativa['id']}}" id="resp{{$index}}{{$j}}" {{$alternativa['correto'] == 1 ? 'checked' : ''}}>
+                                                            <label class="form-check-label" for="resp{{$j}}">
+                                                                {{$alternativa['texto']}}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                @endif
+                                <div class="row justify-content-end mt-4">
+                                    <button type="submit" class="btn float-right mr-3" style="background-color: #2a659d; color:#fff"><i data-toggle="modal" data-target="#AddModal1" data-whatever="Salvar">Salvar gabarito</i></button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             @endforeach
@@ -90,13 +99,14 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form action="/exercicio/delete" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label for="delete-exe-select">Exercício</label>
-                        <select class="form-control" id="delete-exe-select">
-                            <option>Exercício 1</option>
-                            <option>Exercício 2</option>
-                            <option>Exercício 3</option>
+                        <select class="form-control" id="delete-exe-select" name="exercicio">
+                            @foreach ($exercicios as $index=>$exercicio)
+                                <option value="{{$exercicio['id']}}">Exercício {{$index+1}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <button type="submit" class="btn btn-secondary float-right">Confirmar</button>
@@ -128,12 +138,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="inputNomeImg" placeholder="Nome da imagem">
+                                <input type="text" name="nomeImg" class="form-control" id="inputNomeImg" placeholder="Nome da imagem">
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                                        <input type="file" name="img" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
                                         <label class="custom-file-label" for="inputGroupFile">Adicionar imagem</label>
                                     </div>
                                     <div class="input-group-append">
@@ -177,15 +187,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-4" id="alternativas">
-                            <div class="col">
+                        <div class="row mt-4" id="divAlternativas">
+                            <div class="col-12">
                                 <label>Alternativas: </label>
-                                <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
+                                <button type="button" onclick="adicionarAlternativa();" class="btn mr-3" style="background-color: #2a659d; color:#fff">
                                     <i class="material-icons mt-1">add_box</i>
                                 </button>
                                 <button type="button" class="btn mr-3" style="background-color: #2a659d; color:#fff">
                                     <i class="material-icons mt-1">reorder</i>
                                 </button>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check" id="alternativas">
+                                </div>
                             </div>
                         </div>
                         <div class="row justify-content-end mt-4">
@@ -201,10 +215,51 @@
 @endsection
 
 <script>
+    let contador = 0
     function show(){
-        document.getElementById('alternativas').style.display ='flex';
+        document.getElementById('divAlternativas').style.display ='flex';
     }
     function hide(){
-        document.getElementById('alternativas').style.display ='none';
+        document.getElementById('divAlternativas').style.display ='none';
+    }
+    function adicionarAlternativa() {
+        const div = document.getElementById('alternativas')
+
+        const linha = document.createElement('div')
+        linha.classList.add('d-flex')
+        linha.classList.add('align-items-center')
+
+        const input = document.createElement('input')
+        input.setAttribute('type', 'radio')
+        input.setAttribute('id', 'inputAlternativa'+contador)
+        input.classList.add('form-check-input')
+
+        const label = document.createElement('label')
+        label.classList.add('form-check-label')
+        label.setAttribute('for', 'inputAlternativa'+contador)
+
+        const inputNome = document.createElement('input')
+        inputNome.setAttribute('type', 'text')
+        inputNome.classList.add('form-control')
+        inputNome.setAttribute('id', 'inputNomeAlternativa'+contador)
+        inputNome.setAttribute('name', 'inputNomeAlternativa'+contador)
+
+        const br = document.createElement('br')
+
+        label.appendChild(inputNome)
+        linha.appendChild(input)
+        linha.appendChild(label)
+        div.appendChild(linha)
+        div.appendChild(br)
+
+        contador++
+    }
+    function apagarAlternativas() {
+        const div = document.getElementById('alternativas')
+        const copy = [...div.childNodes]
+        for(let c of copy) {
+            div.removeChild(c)
+        }
+        contador = 0
     }
 </script>

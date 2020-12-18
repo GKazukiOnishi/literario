@@ -19,7 +19,7 @@ class ExercicioController extends Controller
     }
 
     function convertExercicioToArray(Exercicio $exercicio, $alternativas, $resolucao, $subsecao) {
-        return ['id'=>$exercicio->id,'nome'=>$exercicio->nome,'enunciado'=>$exercicio->enunciado,'tipo'=>$exercicio->tipo,'alternativas'=>$alternativas,'resolucao'=>$resolucao,'subsecao'=>$subsecao];
+        return ['id'=>$exercicio->id,'nome'=>$exercicio->nome,'enunciado'=>$exercicio->enunciado,'tipo'=>$exercicio->tipo,'alternativas'=>$alternativas,'resolucao'=>$resolucao,'subsecao'=>$subsecao,'img'=>$exercicio->img,'nomeImg'=>$exercicio->nome_img,'enunciado1'=>$exercicio->enunciado1,'enunciado2'=>$exercicio->enunciado2];
     }
 
     function convertAlternativaToArray(Alternativa $alternativa) {
@@ -40,6 +40,12 @@ class ExercicioController extends Controller
         foreach(Area::where('id_area_relacionada',$idSecao)->where('nivel',3)->get() as $area) {
             array_push($subsecoes,$this->convertAreaToArray($area));
             foreach(Exercicio::where('id_area',$area->id)->get() as $exercicio) {
+                if($exercicio->img !== null) {
+                    $pos = strpos($exercicio->enunciado, $exercicio->nome_img);
+                    $exercicio->enunciado1 = substr($exercicio->enunciado, 0, $pos-1);
+                    $exercicio->enunciado2 = substr($exercicio->enunciado, $pos + strlen($exercicio->nome_img) + 1);
+                }
+
                 if($exercicio->tipo == 'A') {
                     $alternativas = [];
                     foreach(Alternativa::where('id_exercicio',$exercicio->id)->get() as $alternativa) {
@@ -49,7 +55,7 @@ class ExercicioController extends Controller
                 } else {
                     $resolucao = Resolucao::where('id_exercicio',$exercicio->id)->first();
                     if (isset($resolucao)) {
-                        $resolucao = convertResolucaoToArray($resolucao);
+                        $resolucao = $this->convertResolucaoToArray($resolucao);
                     }
                     array_push($exercicios,$this->convertExercicioToArray($exercicio,[],$resolucao,$area->nome));
                 }
@@ -61,7 +67,6 @@ class ExercicioController extends Controller
     function carregarPaginaExercicios($idArea, $idSecao, Request $req) {
         $dados = $this->montarExerciciosSubsecao($idSecao);
         if (!$this->ehAluno()) {
-            var_dump($dados);
             return view('professor.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes'],'secao'=>$idSecao,'area'=>$idArea]);
         } else {
             return view('aluno.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes'],'secao'=>$idSecao,'area'=>$idArea]);
@@ -71,11 +76,79 @@ class ExercicioController extends Controller
     function cadastrarExercicio($idArea, $idSecao, Request $req) {
         if (!$this->ehAluno()) {
             $exercicio = new Exercicio();
-            $exercicio->tipo = $_POST['tipo'];
-            $exercicio->enunciado = $_POST['enunciado'];
-            $exercicio->id_area = $_POST['subsecao'];
+            $exercicio->tipo = $req->input('tipo');
+            $exercicio->enunciado = $req->input('enunciado');
+            $exercicio->id_area = $req->input('subsecao');
+            
+            if($req->file('img') !== null && $req->input('nomeImg') !== null) {
+                $md5Name = md5_file($req->file('img')->getRealPath());
+                $guessExtension = $req->file('img')->guessExtension();
+                $file = $req->file('img')->storeAs('images', $md5Name.'.'.$guessExtension);
+                $exercicio->img = $file;
+                $exercicio->nome_img = $req->input('nomeImg');
+            }
+
             $exercicio->save();
+
+            if($exercicio->tipo == 'A') {
+                $cont = 0;
+                while(true) {
+                    $valor = $req->input('inputNomeAlternativa'.$cont);
+                    if ($valor !== null) {
+                        $alternativa = new Alternativa();
+                        $alternativa->id_exercicio = $exercicio->id;
+                        $alternativa->texto = $valor;
+                        $alternativa->ordem = $cont;
+                        $alternativa->save();
+                    } else {
+                        break;
+                    }
+                    $cont++;
+                }
+            }
+
             return redirect(url()->previous());
         }
+    }
+
+    function salvarGabarito($area, $secao, $idExercicio, Request $req) {
+        $exercicio = Exercicio::find($idExercicio);
+        $resposta = $req->input('resposta');
+        $tipo = $exercicio->tipo;
+        if ($tipo == 'A') {
+            $alternativa = Alternativa::find($resposta);
+            $alternativa->ind_correto = true;
+            $alternativa->save();
+        } else {
+            $resolucao = Resolucao::where('id_exercicio', $exercicio->id)->get()->first();
+            if($resolucao !== null) {
+                $resolucao->resposta = $resposta;
+                $resolucao->save();
+            } else {
+                $resolucao = new Resolucao();
+                $resolucao->id_exercicio = $exercicio->id;
+                $resolucao->resposta = $resposta;
+                $resolucao->save();
+            }
+        }
+        return redirect(url()->previous());
+    }
+
+    function excluirExercicio(Request $req) {
+        $idExercicio = $req->input('exercicio');
+        echo $idExercicio;
+        $exercicio = Exercicio::find($idExercicio);
+        if($exercicio->tipo == 'A') {
+            foreach(Alternativa::where('id_exercicio', $exercicio->id)->get() as $alternativa) {
+                $alternativa->delete();
+            }
+        } else {
+            $resolucao = Resolucao::where('id_exercicio', $exercicio->id)->get()->first();
+            if ($resolucao !== null) {
+                $resolucao->delete();
+            }
+        }
+        $exercicio->delete();
+        return redirect(url()->previous());
     }
 }
