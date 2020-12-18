@@ -69,7 +69,7 @@ class ExercicioController extends Controller
         if (!$this->ehAluno()) {
             return view('professor.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes'],'secao'=>$idSecao,'area'=>$idArea]);
         } else {
-            return view('aluno.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes']]);
+            return view('aluno.exercicio',['exercicios'=>$dados['exercicios'],'css'=>'conteudo','subsecoes'=>$dados['subsecoes'],'secao'=>$idSecao,'area'=>$idArea]);
         }
     }
 

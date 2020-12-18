@@ -44,10 +44,10 @@
                                                 <div class="row">
                                                 <legend class="col-form-label col-sm-2 pt-0">Alternativas</legend>
                                                 <div class="col-sm-10">
-                                                    @foreach ($exercicio['alternativas'] as $index=>$alternativa)
+                                                    @foreach ($exercicio['alternativas'] as $j=>$alternativa)
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="resposta" value="{{$alternativa['id']}}" id="resp{{$index}}" {{$alternativa['correto'] == 1 ? 'checked' : ''}}>
-                                                            <label class="form-check-label" for="resp{{$index}}">
+                                                            <input class="form-check-input" type="radio" name="resposta" value="{{$alternativa['id']}}" id="resp{{$index}}{{$j}}" {{$alternativa['correto'] == 1 ? 'checked' : ''}}>
+                                                            <label class="form-check-label" for="resp{{$j}}">
                                                                 {{$alternativa['texto']}}
                                                             </label>
                                                         </div>
