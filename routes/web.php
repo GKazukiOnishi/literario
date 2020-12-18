@@ -6,6 +6,7 @@ use App\Http\Controllers\ConteudoController;
 use App\Http\Controllers\ExercicioController;
 use App\Http\Controllers\RedacaoController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\DicionarioController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -44,7 +45,8 @@ Route::get('/redacao/{tema}/{aluno}',[RedacaoController::class,'carregarPaginaRe
 Route::get('/perfil',[PerfilController::class,'carregarPagina']);
 Route::get('/',[PerfilController::class,'logout'])->name('logout2');
 
-
+Route::get('/dicionario',[DicionarioController::class,'carregarPaginaDicionario']);
+Route::post('/dicionario',[DicionarioController::class,'pesquisarPalavra']);
 
 Auth::routes();
 

@@ -15,6 +15,10 @@ a:hover
     color: #fff;
 }
 
+#link-dicionario:hover {
+    text-decoration: none;
+}
+
 .modal-title
 {
   color: #2a659d;

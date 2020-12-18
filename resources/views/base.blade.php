@@ -56,7 +56,15 @@
                 
                         </div>
                     </div>
-                    <div class="d-flex flex-row">
+                    <div class="d-flex flex-row align-items-center">
+                        <a id="link-dicionario" href="/dicionario">
+                            <div class="d-flex align-items-center">
+                                Dicionário
+                                <span class="material-icons">
+                                    book
+                                </span>
+                            </div>
+                        </a>
               
                         @guest
                        
