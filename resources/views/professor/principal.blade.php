@@ -166,8 +166,8 @@
                             @foreach ($menu['conteudo'] as $conteudo)
                                 <div class="col-12 col-lg-4 mb-4 mb-lg-0">
                                     <div class="card">
-                                        <img src="{{$conteudo['img']}}" class="card-img-top" alt="Imagem {{$conteudo['nome']}}" width="230"
-                                            height="230">
+                                        <img src="{{asset($conteudo['img'])}}" class="card-img-top" alt="Imagem {{$conteudo['nome']}}" width="230"
+                                        height="230">
                                         <div class="card-body">
                                             <h5 class="card-title"><b>{{$conteudo['nome']}}</b></h5>
                                             <p class="card-text">{{$conteudo['descricao']}}</p>
@@ -176,12 +176,12 @@
                                                     class="material-icons mt-1">chevron_right</i></a>
 
                                             <button type="button" class="btn btn-sm float-right mr-3"
-                                                style="background-color: #2a659d; color:#fff">
+                                                style="background-color: #2a659d; color:#fff" data-toggle="modal" data-target="#EditConteudo{{isset($conteudo)?$conteudo['id']:"0"}}">
                                                 <i class="material-icons mt-1">edit</i>
                                             </button>
                                           
                                           
-                                                <button type="button" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff" data-toggle="modal" data-target="#modalDeleteSecao">
+                                                <button type="button" class="btn btn-sm float-right mr-3" style="background-color: #2a659d; color:#fff" data-toggle="modal" data-target="#modalDeleteSecao{{isset($conteudo)?$conteudo['id']:"0"}}">
                                                     <i class="material-icons mt-1">delete</i>
                                                 </button>
                                           
@@ -190,31 +190,64 @@
                                     </div>
                                     <br>
                                 </div>
+                                <div class="modal fade" id="modalDeleteSecao{{isset($conteudo)?$conteudo['id']:"0"}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Exclusão de Conteúdo</h5>
+                                          <form action="/deleteSecao/{{isset($conteudo)?$conteudo['id']:"0"}}/{{isset($conteudo)?$conteudo['id']:"0"}}" method="POST">
+                                            @csrf
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Você tem certeza que deseja excluir {{isset($conteudo)?$conteudo['nome']:""}} e todos os conteúdos relacionados a ele?
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                          <button type="submit" class="btn btn-primary">Excluir</button>
+                                        </div>
+                                    </form>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="modal fade" id="EditConteudo{{isset($conteudo)?$conteudo['id']:"0"}}" tabindex="-1" role="dialog" aria-labelledby="EditConteudo{{isset($conteudo)?$conteudo['id']:"0"}}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="AddModalLabel">Editar Conteúdo</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form action="/editarSecao/{{$conteudo['id']}}" method="POST" enctype="multipart/form-data">
+                                              @csrf
+                                            <div class="form-group">
+                                              <label for="name" class="col-form-label">Título:</label>
+                                            <input type="text" class="form-control" id="form-principal-name" name = "nome" value = "{{$conteudo['nome']}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name" class="col-form-label">Descrição:</label>
+                                                <input type="text" class="form-control" id="form-principal-name" name = "descricao"value = "{{$conteudo['descricao']}}">
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="file" class="col-form-label">Arquivo</label>
+                                                <input type="file" class="form-control" id="form-principal-file" name="arq">
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary float-right">Salvar</button>
+                                            </form>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </div>
                     
-                        <div class="modal fade" id="modalDeleteSecao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Exclusão de Conteúdo</h5>
-                                  <form action="/deleteSecao/{{isset($conteudo)?$conteudo['id']:"0"}}/{{isset($conteudo)?$conteudo['id']:"0"}}" method="POST">
-                                    @csrf
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  Você tem certeza que deseja excluir {{isset($conteudo)?$conteudo['nome']:""}} e todas os conteúdos relacionados a ele?
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                  <button type="submit" class="btn btn-primary">Excluir</button>
-                                </div>
-                            </form>
-                              </div>
-                            </div>
-                          </div>
+                        
+                       
 
                         @if ($menu['nome'] == 'Redação')
                             <h4 class="bg-light" style="padding: 10px; text-align: center">Entregas de alunos</h4>
